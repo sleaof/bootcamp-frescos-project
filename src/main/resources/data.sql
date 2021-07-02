@@ -29,3 +29,21 @@ INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('2', '0.0', '8.0', '2021-03-21', '2021-03-21', '40', '60', '2021-05-21','2', '2');
 INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('3', '-5.0', '-8.0', '2021-05-21', '2021-05-21', '15', '25', '2021-05-21','3','3');
+
+
+----Insert enderecos de uma warehouse
+INSERT INTO addresses (address_id, address_name, city, state, street) VALUES ('1', 'fullfilment Cajamar', 'Cajamar', 'SP', 'Avenida Doutor Antonio Joao Abdalla, Nº 1111');
+INSERT INTO addresses (address_id, address_name, city, state, street) VALUES ('2', 'fullfilment Extrema', 'Extrema', 'MG', 'Avenida Matias de Camargo,  Nº 2222');
+INSERT INTO addresses (address_id, address_name, city, state, street) VALUES ('3', 'fullfilment Guarulhos', 'Guarulhos', 'SP', 'Rua das Flores,  Nº 3333');
+
+
+----Insert supervisores em uma warehouse
+INSERT INTO supervisors (supervisor_id, supervisor_name) VALUES ('1', 'Sergio');
+INSERT INTO supervisors (supervisor_id, supervisor_name) VALUES ('2', 'Lorivaldo');
+INSERT INTO supervisors (supervisor_id, supervisor_name) VALUES ('3', 'Garibalda');
+
+
+----Insert uma warehouse
+INSERT INTO warehouses (warehouse_id, warehouse_name, address_address_id, supervisor_supervisor_id) VALUES ('1', 'Cajamar', '1', '1');
+INSERT INTO warehouses (warehouse_id, warehouse_name, address_address_id, supervisor_supervisor_id) VALUES ('2', 'Extrema', '2', '2');
+INSERT INTO warehouses (warehouse_id, warehouse_name, address_address_id, supervisor_supervisor_id) VALUES ('3', 'Guarulhos', '3', '3');
