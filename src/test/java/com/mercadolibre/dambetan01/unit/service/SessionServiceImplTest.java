@@ -32,7 +32,7 @@ class SessionServiceImplTest {
 
     @Test
     void loginOk(){
-        Account account = new Account(null, "User", "Pass", null, null);
+        Account account = new Account(null, "User", "Pass", null, null, null);
         when(repository.findByUsernameAndPassword("User", "Pass")).thenReturn(account);
         AccountResponseDTO accountDTO = service.login("User","Pass");
         assertEquals("User", accountDTO.getUsername());
