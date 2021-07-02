@@ -1,7 +1,9 @@
 package com.mercadolibre.dambetan01.enums;
 
-public enum ProductCategory {
+public enum SectionCategory {
+
     FRESH,
     REFRIGERATED,
-    FROZEN
+    FROZEN,
+    DRY
 }
