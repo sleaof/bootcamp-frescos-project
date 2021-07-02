@@ -27,4 +27,8 @@ public class Batch {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id_fk", nullable = false)
     private Product product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id_fk", nullable = false)
+    private Section section;
 }
