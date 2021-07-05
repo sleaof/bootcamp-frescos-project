@@ -1,7 +1,6 @@
 package com.mercadolibre.dambetan01.enums;
 
 public enum State {
-
     AC,
     AL,
     AP,
@@ -29,5 +28,4 @@ public enum State {
     SE,
     TO,
     DF
-
 }

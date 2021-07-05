@@ -92,6 +92,7 @@ public class SessionServiceImpl implements ISessionService {
      * @param token
      * @return
      */
+
     public static String getUsername(String token) {
         Claims claims = decodeJWT(token);
         return claims.get("sub", String.class);
