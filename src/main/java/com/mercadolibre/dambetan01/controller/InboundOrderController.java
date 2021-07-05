@@ -2,18 +2,22 @@ package com.mercadolibre.dambetan01.controller;
 
 import com.mercadolibre.dambetan01.dtos.InboundOrderDTO;
 import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
+import com.mercadolibre.dambetan01.service.BatchService;
+import com.mercadolibre.dambetan01.service.InboudOrderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RequestMapping(path = "/api/v1")
 @RestController
 public class InboundOrderController {
 
+    private InboudOrderService inboudOrderService;
+
     @PostMapping("/fresh-products/inbounded/")
     public ResponseEntity<BatchStockResponseDTO> createBatchStock(@RequestBody InboundOrderDTO inboundOrderDTO){
-        //BatchStockResponseDTO;
-        return null;
-
+        return new ResponseEntity<>(inboudOrderService.createInboundOrder(inboundOrderDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/fresh-products/inbounded/")

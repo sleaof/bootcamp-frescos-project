@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="warehouses")
@@ -25,5 +26,8 @@ public class Warehouse {
 
     @OneToOne
     private Supervisor supervisor;
+
+    @OneToMany(mappedBy = "warehouse")
+    private List<Section> sections;
 
 }

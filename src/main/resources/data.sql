@@ -16,21 +16,6 @@ INSERT INTO products (product_id, product_name, product_category, temperature, v
 INSERT INTO products (product_id, product_name, product_category, temperature, validated) VALUES ('3','Maca', 'REFRIGERATED', 0.0, '2021-05-21');
 
 
---Insert a sections de um WareHouse
-INSERT INTO sections (section_id, section_name_category, min_temperature, max_temperature, current_temperature) VALUES ('1', 'FROZEN', -15.0, 0.0, -6.0);
-INSERT INTO sections (section_id, section_name_category, min_temperature, max_temperature, current_temperature) VALUES ('2', 'FRESH', 10.1, 20.0, 14.0);
-INSERT INTO sections (section_id, section_name_category, min_temperature, max_temperature, current_temperature) VALUES ('3', 'REFRIGERATED', 0.1, 10.0, 2.0);
-
-
---Insert lotes de um determinado produto
-INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
-manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('1', '-5.0', '-8.0', '2021-05-21', '2021-05-21', '50', '50', '2021-05-21','1', '1');
-INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
-manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('2', '0.0', '8.0', '2021-03-21', '2021-03-21', '40', '60', '2021-05-21','2', '2');
-INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
-manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('3', '-5.0', '-8.0', '2021-05-21', '2021-05-21', '15', '25', '2021-05-21','3','3');
-
-
 ----Insert enderecos de uma warehouse
 INSERT INTO addresses (address_id, address_name, city, state, street) VALUES ('1', 'fullfilment Cajamar', 'Cajamar', 'SP', 'Avenida Doutor Antonio Joao Abdalla, Nº 1111');
 INSERT INTO addresses (address_id, address_name, city, state, street) VALUES ('2', 'fullfilment Extrema', 'Extrema', 'MG', 'Avenida Matias de Camargo,  Nº 2222');
@@ -47,3 +32,17 @@ INSERT INTO supervisors (supervisor_id, supervisor_name) VALUES ('3', 'Garibalda
 INSERT INTO warehouses (warehouse_id, warehouse_name, address_address_id, supervisor_supervisor_id) VALUES ('1', 'Cajamar', '1', '1');
 INSERT INTO warehouses (warehouse_id, warehouse_name, address_address_id, supervisor_supervisor_id) VALUES ('2', 'Extrema', '2', '2');
 INSERT INTO warehouses (warehouse_id, warehouse_name, address_address_id, supervisor_supervisor_id) VALUES ('3', 'Guarulhos', '3', '3');
+
+--Insert a sections de um WareHouse
+INSERT INTO sections (section_id, section_name_category, min_temperature, max_temperature, current_temperature, warehouse_id_fk) VALUES ('1', 'FROZEN', -15.0, 0.0, -6.0, '1');
+INSERT INTO sections (section_id, section_name_category, min_temperature, max_temperature, current_temperature, warehouse_id_fk) VALUES ('2', 'FRESH', 10.1, 20.0, 14.0, '2');
+INSERT INTO sections (section_id, section_name_category, min_temperature, max_temperature, current_temperature, warehouse_id_fk) VALUES ('3', 'REFRIGERATED', 0.1, 10.0, 2.0, '3');
+
+
+--Insert lotes de um determinado produto
+INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('1', '-5.0', '-8.0', '2021-05-21', '2021-05-21', '50', '50', '2021-05-21','1', '1');
+INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('2', '0.0', '8.0', '2021-03-21', '2021-03-21', '40', '60', '2021-05-21','2', '2');
+INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('3', '-5.0', '-8.0', '2021-05-21', '2021-05-21', '15', '25', '2021-05-21','3','3');
