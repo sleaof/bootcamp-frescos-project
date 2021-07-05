@@ -1,5 +1,8 @@
 package com.mercadolibre.dambetan01.controller;
 
+import com.mercadolibre.dambetan01.dtos.InboundOrderDTO;
+import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(path = "/api/v1")
@@ -7,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class InboundOrderController {
 
     @PostMapping("/fresh-products/inbounded/")
-    public String createInboundOrder(){
-        return "Criando um lote nove";
+    public ResponseEntity<BatchStockResponseDTO> createBatchStock(@RequestBody InboundOrderDTO inboundOrderDTO){
+        //BatchStockResponseDTO;
+        return null;
+
     }
 
     @PutMapping("/fresh-products/inbounded/")
