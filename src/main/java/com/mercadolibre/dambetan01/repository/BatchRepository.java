@@ -1,6 +1,7 @@
 package com.mercadolibre.dambetan01.repository;
 
+import com.mercadolibre.dambetan01.model.Batch;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BatchRepository extends JpaRepository<BatchRepository, Long> {
+public interface BatchRepository extends JpaRepository<Batch, Long> {
 }
