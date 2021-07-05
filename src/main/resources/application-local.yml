@@ -1,11 +1,33 @@
+## Properties file for local/dev enviroment
+## You need to configure the environment variable in your IDE, more info in README.md
+## Overrides application.yml default properties
+#
+#spring:
+#  datasource:
+#    host: proxysql.master.meliseginf.com:6612
+#    db: dambetandb
+#    username: ${LOCAL_DB_USER}
+#    password: ${LOCAL_DB_PASS}
+#    initialization-mode: always
+#
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      sql: debug
+#      ddl-auto: none # create-drop para crear las entidades, una vez creadas y finalizado el mododel cambiar a none
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#
+#
+#server:
+#  port: 8082 # no cambiar en prod
 # Properties file for local/dev enviroment
 # You need to configure the environment variable in your IDE, more info in README.md
 # Overrides application.yml default properties
 
 spring:
   datasource:
-    host: proxysql.master.meliseginf.com:6612
-    db: dambetandb
+    host: 127.0.0.1:3306
+    db: frescos
     username: ${LOCAL_DB_USER}
     password: ${LOCAL_DB_PASS}
     initialization-mode: always
@@ -14,7 +36,7 @@ spring:
     show-sql: true
     hibernate:
       sql: debug
-      ddl-auto: none # create-drop para crear las entidades, una vez creadas y finalizado el mododel cambiar a none
+      ddl-auto: create # create-drop para crear las entidades, una vez creadas y finalizado el mododel cambiar a none
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
 
