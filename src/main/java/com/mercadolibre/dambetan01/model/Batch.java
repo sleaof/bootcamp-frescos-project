@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="batch")
@@ -31,4 +34,7 @@ public class Batch {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id_fk", nullable = false)
     private Section section;
+
+    @OneToMany(mappedBy = "batch")
+    private List<BatchHasPurchaseOrder> purchaseOrders;
 }
