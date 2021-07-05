@@ -41,14 +41,16 @@ public class BatchServiceImpl implements BatchService {
             Batch batch = newBatch(b);
             batch.setProduct(product);
             batch.setSection(section);
-            batchRepository.save(batch);
             batchStock.add(batch);
+            batchRepository.save(batch);
         }
 
         batchStockResponseDTO.setBatchStock(batchStock);
         return batchStockResponseDTO;
     }
 
+
+    //Retirar do Service----
     private Batch newBatch(BatchDTO b){
 
         Batch batch = new Batch();
@@ -63,6 +65,7 @@ public class BatchServiceImpl implements BatchService {
         return batch;
     }
 
+    //Retirar do Service
     private Section buildSection(InboundOrderDTO inboundOrderDTO) {
 
         Section section = sectionService.findById(inboundOrderDTO.getSection().getSectionCode());
