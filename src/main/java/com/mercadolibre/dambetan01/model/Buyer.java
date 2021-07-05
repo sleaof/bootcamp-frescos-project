@@ -19,5 +19,6 @@ public class Buyer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long buyerId;
 
+
     private String name;
 }
