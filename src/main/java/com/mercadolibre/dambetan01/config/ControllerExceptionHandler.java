@@ -1,7 +1,6 @@
 package com.mercadolibre.dambetan01.config;
 
-import com.mercadolibre.dambetan01.exceptions.ApiError;
-import com.mercadolibre.dambetan01.exceptions.ApiException;
+import com.mercadolibre.dambetan01.exceptions.*;
 import com.newrelic.api.agent.NewRelic;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -11,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.time.Instant;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -47,5 +48,28 @@ public class ControllerExceptionHandler {
 		ApiError apiError = new ApiError("internal_error", "Internal server error", HttpStatus.INTERNAL_SERVER_ERROR.value());
 		return ResponseEntity.status(apiError.getStatus())
 				.body(apiError);
+	}
+
+	@ExceptionHandler(value = {BatchHasExistException.class})
+	protected  ResponseEntity<StandardError> batchHasExist(BatchHasExistException e,  HttpServletRequest request){
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(HttpStatus.CONFLICT.value());
+		err.setError("Batch has exist in stock");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(err);
+
+	}
+	@ExceptionHandler(value = {NotFoundException.class})
+	protected  ResponseEntity<StandardError> entityNotFound(NotFoundException e,  HttpServletRequest request){
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(HttpStatus.NOT_FOUND.value());
+		err.setError("Resource not Found");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+
 	}
 }

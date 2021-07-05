@@ -3,6 +3,8 @@ package com.mercadolibre.dambetan01.service.impl;
 import com.mercadolibre.dambetan01.dtos.BatchDTO;
 import com.mercadolibre.dambetan01.dtos.InboundOrderDTO;
 import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
+import com.mercadolibre.dambetan01.exceptions.ApiException;
+import com.mercadolibre.dambetan01.exceptions.BatchHasExistException;
 import com.mercadolibre.dambetan01.model.Batch;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.Section;
@@ -33,16 +35,21 @@ public class BatchServiceImpl implements BatchService {
     public BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) {
 
         BatchStockResponseDTO batchStockResponseDTO = new BatchStockResponseDTO();
-        List<Batch> batchStock = new ArrayList<>();
+        List<BatchDTO> batchStock = new ArrayList<>();
         Section section = buildSection(inboundOrderDTO);
 
+
         for(BatchDTO b : inboundOrderDTO.getBatchStock()){
-            Product product = productService.findById(b.getProductId());
-            Batch batch = newBatch(b);
-            batch.setProduct(product);
-            batch.setSection(section);
-            batchStock.add(batch);
-            batchRepository.save(batch);
+            if(!hasBatch(b.getBatchNumber())) {
+                Product product = productService.findById(b.getProductId());
+                Batch batch = newBatch(b);
+                batch.setBatchId(batch.getBatchId());
+                batch.setProduct(product);
+                batch.setSection(section);
+                batchStock.add(b);
+                batchRepository.save(batch);
+            }
+            throw new BatchHasExistException("Já Existe Um Lote com esse número: " + b.getBatchNumber() );
         }
 
         batchStockResponseDTO.setBatchStock(batchStock);
@@ -73,5 +80,9 @@ public class BatchServiceImpl implements BatchService {
         section.setWarehouse(warehouse);
 
         return section;
+    }
+
+    private boolean hasBatch(Long id){
+        return batchRepository.existsById(id);
     }
 }
