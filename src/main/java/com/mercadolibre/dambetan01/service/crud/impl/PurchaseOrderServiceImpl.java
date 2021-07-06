@@ -3,12 +3,10 @@ package com.mercadolibre.dambetan01.service.crud.impl;
 import com.mercadolibre.dambetan01.dtos.ProductDTO;
 import com.mercadolibre.dambetan01.dtos.PurchaseOrderDTO;
 import com.mercadolibre.dambetan01.dtos.response.ProductResponseDTO;
-import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.model.PurchaseOrder;
 
 import com.mercadolibre.dambetan01.repository.PurchaseOrderRepository;
 import com.mercadolibre.dambetan01.service.crud.IPurchaseOrderService;
-import org.json.simple.JSONObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -76,17 +74,17 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
         return purchaseOrderDTO;
     }
 
+
     @Override
-    public List<JSONObject> selectProductsFromOrderId(Long id) {
-        return purchaseOrderRepository.findProductsFromOrderById(id);
+    public List<ProductResponseDTO> selectProductsFromOrderId(Long id) {
+        return purchaseOrderRepository.findProductsFromOrderById(id)
+                .stream()
+                .map(product -> modelMapper.map(product, ProductResponseDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override
     public Float calcTotalValue(List<ProductDTO> products) {
-        Double totalValue = 0.0;
-        for(ProductDTO x : products) {
-            //totalValue = x.getQuantity();
-        }
         return null;
     }
 }
