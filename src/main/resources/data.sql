@@ -46,3 +46,14 @@ INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('2', '0.0', '8.0', '2021-03-21', '2021-03-21', '40', '60', '2021-05-21','2', '2');
 INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('3', '-5.0', '-8.0', '2021-05-21', '2021-05-21', '15', '25', '2021-05-21','3','3');
+
+
+INSERT INTO inbound_order ( inbound_order_id, order_date ) VALUES ('1', '2021-05-21');
+INSERT INTO inbound_order ( inbound_order_id, order_date ) VALUES ('2', '2021-05-21');
+INSERT INTO inbound_order ( inbound_order_id, order_date ) VALUES ('3', '2021-05-21');
+
+
+INSERT INTO inbound_order_has_batch ( inbound_order_has_batch_id, quantity, inbound_order_id_fk, batch_id_fk ) VALUES ('1', '50', '1', '1');
+INSERT INTO inbound_order_has_batch ( inbound_order_has_batch_id, quantity, inbound_order_id_fk, batch_id_fk ) VALUES ('2', '40', '2', '2');
+INSERT INTO inbound_order_has_batch ( inbound_order_has_batch_id, quantity, inbound_order_id_fk, batch_id_fk ) VALUES ('3', '15', '3', '3');
+INSERT INTO inbound_order_has_batch ( inbound_order_has_batch_id, quantity, inbound_order_id_fk, batch_id_fk ) VALUES ('4', '15', '3', '2');

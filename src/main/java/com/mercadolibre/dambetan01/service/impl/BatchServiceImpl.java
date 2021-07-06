@@ -3,17 +3,13 @@ package com.mercadolibre.dambetan01.service.impl;
 import com.mercadolibre.dambetan01.dtos.BatchDTO;
 import com.mercadolibre.dambetan01.dtos.InboundOrderDTO;
 import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
-import com.mercadolibre.dambetan01.model.Batch;
-import com.mercadolibre.dambetan01.model.Product;
-import com.mercadolibre.dambetan01.model.Section;
-import com.mercadolibre.dambetan01.model.Warehouse;
+import com.mercadolibre.dambetan01.mapper.BatchMapper;
+import com.mercadolibre.dambetan01.model.*;
 import com.mercadolibre.dambetan01.repository.BatchRepository;
-import com.mercadolibre.dambetan01.service.BatchService;
-import com.mercadolibre.dambetan01.service.ProductService;
-import com.mercadolibre.dambetan01.service.SectionService;
-import com.mercadolibre.dambetan01.service.WarehouseService;
+import com.mercadolibre.dambetan01.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,53 +18,58 @@ import java.util.List;
 public class BatchServiceImpl implements BatchService {
 
     private final BatchRepository batchRepository;
-
     private final ProductService productService;
-
     private final WarehouseService warehouseService;
-
     private final SectionService sectionService;
+    private final InboundOrderService inboundOrderService;
+    private final InboundOrderHasBatchService inboundOrderHasBatchService;
+
+    @Override
+    public Batch findBatchByBatchNumber(Long batchNumber) {
+        Batch batch = batchRepository.findById(batchNumber).orElseThrow();
+        return batch;
+    }
 
     @Override
     public BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) {
-
         BatchStockResponseDTO batchStockResponseDTO = new BatchStockResponseDTO();
-        List<Batch> batchStock = new ArrayList<>();
-        Section section = buildSection(inboundOrderDTO);
-
+        List<BatchDTO> batchStock = new ArrayList<>();
+        Section section = buildSectionToBatchStock(inboundOrderDTO);
+        InboundOrder inboundOrder = inboundOrderService.createInboundOrder(inboundOrderDTO);
         for(BatchDTO b : inboundOrderDTO.getBatchStock()){
             Product product = productService.findById(b.getProductId());
-            Batch batch = newBatch(b);
+            Batch batch = BatchMapper.newBatch(b);
             batch.setProduct(product);
             batch.setSection(section);
             batchRepository.save(batch);
-            batchStock.add(batch);
+            inboundOrderHasBatchService.createInboundOrderHasBatch(inboundOrder, batch);
+            batchStock.add(BatchMapper.convertBatchToBatchDTO(batch));
         }
-
         batchStockResponseDTO.setBatchStock(batchStock);
         return batchStockResponseDTO;
     }
 
-    private Batch newBatch(BatchDTO b){
-
-        Batch batch = new Batch();
-        batch.setMinTemperature(b.getMinTemperature());
-        batch.setCurrentTemperature(b.getCurrentTemperature());
-        batch.setManufacturingDate(b.getManufacturingDate());
-        batch.setManufacturingTime(b.getManufacturingTime());
-        batch.setInitialQuantity(b.getInitialQuantity());
-        batch.setCurrentQuantity(b.getCurrentQuantity());
-        batch.setDueDate(b.getDueDate());
-
-        return batch;
+    @Override
+    public BatchStockResponseDTO updateBatchStock(InboundOrderDTO inboundOrderDTO, Long orderNumber) {
+        BatchStockResponseDTO batchStockResponseDTO = new BatchStockResponseDTO();
+        List<BatchDTO> batchStock = new ArrayList<>();
+        Section section = buildSectionToBatchStock(inboundOrderDTO);
+        for(BatchDTO b : inboundOrderDTO.getBatchStock()){
+            Batch updateBatch = findBatchByBatchNumber(b.getBatchNumber());
+            updateBatch = BatchMapper.updateBatch(b, updateBatch);
+            updateBatch.setSection(section);
+            batchRepository.save(updateBatch);
+            batchStock.add(BatchMapper.convertBatchToBatchDTO(updateBatch));
+            batchStockResponseDTO.setBatchStock(batchStock);
+        }
+        return batchStockResponseDTO;
     }
 
-    private Section buildSection(InboundOrderDTO inboundOrderDTO) {
-
+    public Section buildSectionToBatchStock(InboundOrderDTO inboundOrderDTO) {
         Section section = sectionService.findById(inboundOrderDTO.getSection().getSectionCode());
         Warehouse warehouse = warehouseService.findById(inboundOrderDTO.getSection().getWarehouseCode());
         section.setWarehouse(warehouse);
-
         return section;
     }
+
 }

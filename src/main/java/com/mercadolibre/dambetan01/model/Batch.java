@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="batch")
@@ -33,4 +34,8 @@ public class Batch {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id_fk", nullable = false)
     private Section section;
+
+    @OneToMany(mappedBy = "batchs")
+    private List<InboundOrderHasBatch> inboundOrderHasBatch;
+
 }

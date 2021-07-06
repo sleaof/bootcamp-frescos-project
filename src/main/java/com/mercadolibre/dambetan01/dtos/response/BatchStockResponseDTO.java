@@ -1,6 +1,6 @@
 package com.mercadolibre.dambetan01.dtos.response;
 
-import com.mercadolibre.dambetan01.model.Batch;
+import com.mercadolibre.dambetan01.dtos.BatchDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 public class BatchStockResponseDTO {
 
-    private List<Batch> batchStock;
+    private List<BatchDTO> batchStock;
 }
