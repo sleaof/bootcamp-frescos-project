@@ -6,28 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name="warehouses")
+@Table(name="seller")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Warehouse {
+public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long warehouseId;
-    private String warehouseName;
-
-    @OneToOne
-    private Address address;
-
-    @OneToOne
-    private Supervisor supervisor;
-
-    @OneToMany(mappedBy = "warehouse")
-    private List<Section> sections;
+    private Long sellerId;
+    private String sellerName;
 
 }

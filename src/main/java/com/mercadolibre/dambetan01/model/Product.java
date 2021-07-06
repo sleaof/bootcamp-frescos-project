@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mercadolibre.dambetan01.enums.ProductCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductCategory productCategory;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private List<Batch> batchs;
 }
