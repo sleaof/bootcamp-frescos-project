@@ -26,9 +26,7 @@ public class PurchaseOrderController {
 
     @PostMapping("/fresh-products/orders/")
     public Float createOrder(@RequestBody PurchaseOrderDTO purchaseOrderDTO){
-
-
-        // purchaseOrderService.create(purchaseOrderDTO);
+        purchaseOrderService.create(purchaseOrderDTO);
         return 0F;
     }
 
