@@ -29,6 +29,8 @@ INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('2', '0.0', '8.0', '2021-03-21', '2021-03-21', '40', '60', '2021-05-21','2', '2');
 INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('3', '-5.0', '-8.0', '2021-05-21', '2021-05-21', '15', '25', '2021-05-21','3','3');
+INSERT INTO batch (batch_id, current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('4', '-5.0', '-8.0', '2021-05-21', '2021-05-21', '50', '50', '2021-05-21','1', '3');
 
 
 -- Insert enderecos de uma warehouse
