@@ -2,6 +2,7 @@ package com.mercadolibre.dambetan01.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mercadolibre.dambetan01.enums.OrderStatus;
+import com.mercadolibre.dambetan01.model.BatchHasPurchaseOrder;
 import com.mercadolibre.dambetan01.model.Buyer;
 import lombok.Data;
 import org.springframework.validation.annotation.Validated;
@@ -28,5 +29,6 @@ public class PurchaseOrderDTO {
     private Buyer buyer;
 
     @Valid
-    private List<ProductDTO> products;
+    private List<ProductBatchOrderDTO> products;
+
 }

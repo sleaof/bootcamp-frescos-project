@@ -31,9 +31,12 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
 
     @Override
     public PurchaseOrderDTO create(PurchaseOrderDTO purchaseOrderDTO) {
+        //checar estoque
+        //diminuir estoque
+
+
         PurchaseOrder purchaseOrder = modelMapper.map(purchaseOrderDTO, PurchaseOrder.class);
         purchaseOrderRepository.save(purchaseOrder);
-
         return purchaseOrderDTO;
     }
 
