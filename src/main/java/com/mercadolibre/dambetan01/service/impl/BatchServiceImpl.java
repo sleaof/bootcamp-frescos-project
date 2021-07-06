@@ -3,6 +3,7 @@ package com.mercadolibre.dambetan01.service.impl;
 import com.mercadolibre.dambetan01.dtos.BatchDTO;
 import com.mercadolibre.dambetan01.dtos.InboundOrderDTO;
 import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
+import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.mapper.BatchMapper;
 import com.mercadolibre.dambetan01.model.*;
 import com.mercadolibre.dambetan01.repository.BatchRepository;
@@ -26,8 +27,7 @@ public class BatchServiceImpl implements BatchService {
 
     @Override
     public Batch findBatchByBatchNumber(Long batchNumber) {
-        Batch batch = batchRepository.findById(batchNumber).orElseThrow();
-        return batch;
+        return batchRepository.findById(batchNumber).orElseThrow(() -> new NotFoundException("Batch " + batchNumber));
     }
 
     @Override
