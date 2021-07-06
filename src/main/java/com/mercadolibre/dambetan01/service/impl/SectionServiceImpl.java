@@ -16,4 +16,5 @@ public class SectionServiceImpl implements SectionService {
     public Section findById(Long id) {
         return sectionRepository.findById(id).orElseThrow();
     }
+
 }

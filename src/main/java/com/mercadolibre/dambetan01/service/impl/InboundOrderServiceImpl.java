@@ -4,7 +4,6 @@ import com.mercadolibre.dambetan01.dtos.InboundOrderDTO;
 import com.mercadolibre.dambetan01.mapper.InboundOrderMapper;
 import com.mercadolibre.dambetan01.model.InboundOrder;
 import com.mercadolibre.dambetan01.repository.InboundOrderRepository;
-import com.mercadolibre.dambetan01.service.BatchService;
 import com.mercadolibre.dambetan01.service.InboundOrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -37,13 +37,13 @@ public class BatchServiceImpl implements BatchService {
         Section section = buildSectionToBatchStock(inboundOrderDTO);
         InboundOrder inboundOrder = inboundOrderService.createInboundOrder(inboundOrderDTO);
         for(BatchDTO b : inboundOrderDTO.getBatchStock()){
-            Product product = productService.findById(b.getProductId());
-            Batch batch = BatchMapper.newBatch(b);
-            batch.setProduct(product);
-            batch.setSection(section);
-            batchRepository.save(batch);
-            inboundOrderHasBatchService.createInboundOrderHasBatch(inboundOrder, batch);
-            batchStock.add(BatchMapper.convertBatchToBatchDTO(batch));
+                Product product = productService.findById(b.getProductId());
+                Batch batch = BatchMapper.newBatch(b);
+                batch.setProduct(product);
+                batch.setSection(section);
+                batchRepository.save(batch);
+                inboundOrderHasBatchService.createInboundOrderHasBatch(inboundOrder, batch);
+                batchStock.add(BatchMapper.convertBatchToBatchDTO(batch));
         }
         batchStockResponseDTO.setBatchStock(batchStock);
         return batchStockResponseDTO;
@@ -55,12 +55,12 @@ public class BatchServiceImpl implements BatchService {
         List<BatchDTO> batchStock = new ArrayList<>();
         Section section = buildSectionToBatchStock(inboundOrderDTO);
         for(BatchDTO b : inboundOrderDTO.getBatchStock()){
-            Batch updateBatch = findBatchByBatchNumber(b.getBatchNumber());
-            updateBatch = BatchMapper.updateBatch(b, updateBatch);
-            updateBatch.setSection(section);
-            batchRepository.save(updateBatch);
-            batchStock.add(BatchMapper.convertBatchToBatchDTO(updateBatch));
-            batchStockResponseDTO.setBatchStock(batchStock);
+                Batch updateBatch = findBatchByBatchNumber(b.getBatchNumber());
+                updateBatch = BatchMapper.updateBatch(b, updateBatch);
+                updateBatch.setSection(section);
+                batchRepository.save(updateBatch);
+                batchStock.add(BatchMapper.convertBatchToBatchDTO(updateBatch));
+                batchStockResponseDTO.setBatchStock(batchStock);
         }
         return batchStockResponseDTO;
     }
