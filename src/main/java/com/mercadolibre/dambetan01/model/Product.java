@@ -24,6 +24,7 @@ public class Product {
     private String productName;
     private Double temperature;
     private LocalDate validated;
+    private Float price;
     @Enumerated(EnumType.STRING)
     private ProductCategory productCategory;
 

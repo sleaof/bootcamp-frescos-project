@@ -28,7 +28,7 @@ public class PurchaseOrder {
     private OrderStatus orderStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "buyer_id", nullable = false)
+    @JoinColumn(name = "buyer_id_fk", nullable = false)
     private Buyer buyer;
 
     @OneToMany(mappedBy = "purchaseOrder")
