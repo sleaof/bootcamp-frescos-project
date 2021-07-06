@@ -29,4 +29,8 @@ public class Section {
 
     @OneToMany(mappedBy = "section")
     private List<Batch> batchs;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "warehouse_id_fk")
+    private Warehouse warehouse;
 }
