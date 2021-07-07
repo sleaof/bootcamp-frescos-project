@@ -18,7 +18,7 @@ public class BatchController {
     private BatchServiceImpl batchService;
 
     @PostMapping("/fresh-products/inbounded/")
-    public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody  InboundOrderDTO inboundOrderDTO){
+    public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody  InboundOrderDTO inboundOrderDTO) throws Throwable {
         return new ResponseEntity<>(batchService.createBatchStock(inboundOrderDTO), HttpStatus.CREATED);
     }
 

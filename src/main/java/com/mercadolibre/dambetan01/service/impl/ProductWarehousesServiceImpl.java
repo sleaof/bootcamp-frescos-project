@@ -1,33 +1,36 @@
 package com.mercadolibre.dambetan01.service.impl;
 
 import com.mercadolibre.dambetan01.dtos.response.ProductsWarehousesResponseDTO;
-import com.mercadolibre.dambetan01.model.Batch;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.repository.BatchRepository;
-import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.service.IProductWarehousesService;
+import com.mercadolibre.dambetan01.service.ProductService;
+import org.json.simple.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductWarehousesServiceImpl implements IProductWarehousesService {
 
     private BatchRepository batchRepository;
+    private ProductService productService;
 
-    public ProductWarehousesServiceImpl(BatchRepository batchRepository) {
+    public ProductWarehousesServiceImpl(BatchRepository batchRepository, ProductService productService) {
         this.batchRepository = batchRepository;
+        this.productService = productService;
     }
 
     @Override
-    public List<Batch> productIdFromWarehouses(Long productId) {
-        List<Batch> productsId = batchRepository.findAll().stream()
-                .filter(p -> p.getProduct().getProductId())
-                .collect(Collectors.toList());
-       // ProductsWarehousesResponseDTO productsWarehousesResponseDTO = new ProductsWarehousesResponseDTO(productsId,);
-        return productsId;
+    public ResponseEntity<ProductsWarehousesResponseDTO> productIdFromWarehouses(Long productId) throws Throwable {
+        Product p = productService.findById(productId);
+        List<JSONObject> json = batchRepository.productIdFromWarehouses(productId);
+        ProductsWarehousesResponseDTO pj = new ProductsWarehousesResponseDTO(productId,json);
+        if (p != null) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(pj);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
 }

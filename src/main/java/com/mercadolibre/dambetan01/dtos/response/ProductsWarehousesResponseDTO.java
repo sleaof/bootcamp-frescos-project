@@ -3,6 +3,8 @@ package com.mercadolibre.dambetan01.dtos.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.json.simple.JSONObject;
+
 import java.util.List;
 
 @AllArgsConstructor
@@ -11,6 +13,6 @@ import java.util.List;
 public class ProductsWarehousesResponseDTO {
 
     private Long productId;
-    private List<WareHouseResponseDTO> warehouses;
+    private List<JSONObject> warehouses;
 
 }

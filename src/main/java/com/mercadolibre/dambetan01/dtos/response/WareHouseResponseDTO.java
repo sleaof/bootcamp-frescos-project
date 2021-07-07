@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class WareHouseResponseDTO {
 
-    private String warehousesCode;
+    private Long warehousesCode;
     private Long totalQuantity;
 
 }
