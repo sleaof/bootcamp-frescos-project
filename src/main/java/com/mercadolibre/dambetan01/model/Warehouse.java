@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="warehouses")
+@Table(name = "warehouses")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,5 +29,4 @@ public class Warehouse {
 
     @OneToMany(mappedBy = "warehouse")
     private List<Section> sections;
-
 }

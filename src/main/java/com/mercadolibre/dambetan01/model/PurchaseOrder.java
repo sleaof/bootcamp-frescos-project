@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="purchase_orders")
+@Table(name = "purchase_orders")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -32,5 +32,4 @@ public class PurchaseOrder {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer_id_fk", nullable = false)
     private Buyer buyer;
-
 }
