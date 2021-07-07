@@ -1,12 +1,17 @@
 package com.mercadolibre.dambetan01.service.crud.impl;
 
-import com.mercadolibre.dambetan01.dtos.ProductBatchOrderDTO;
-import com.mercadolibre.dambetan01.dtos.ProductDTO;
-import com.mercadolibre.dambetan01.dtos.PurchaseOrderDTO;
+import com.mercadolibre.dambetan01.dtos.*;
 import com.mercadolibre.dambetan01.dtos.response.ProductResponseDTO;
-import com.mercadolibre.dambetan01.model.PurchaseOrder;
+import com.mercadolibre.dambetan01.dtos.response.TotalPriceResponseDTO;
+import com.mercadolibre.dambetan01.mapper.BatchMapper;
+import com.mercadolibre.dambetan01.model.*;
 
+import com.mercadolibre.dambetan01.repository.BatchHasPurchaseOrderRepository;
+import com.mercadolibre.dambetan01.repository.BatchRepository;
+import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.repository.PurchaseOrderRepository;
+import com.mercadolibre.dambetan01.service.crud.IBatchHasPurchaseOrder;
+import com.mercadolibre.dambetan01.service.crud.IBatchService;
 import com.mercadolibre.dambetan01.service.crud.IPurchaseOrderService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -20,21 +25,40 @@ import java.util.stream.Collectors;
 public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
 
     private PurchaseOrderRepository purchaseOrderRepository;
+    private ProductRepository productRepository;
+    private IBatchHasPurchaseOrder batchHasPurchaseOrder;
+    private IBatchService batchService;
 
     private ModelMapper modelMapper;
 
-    public PurchaseOrderServiceImpl(PurchaseOrderRepository purchaseOrderRepository, ModelMapper modelMapper) {
+    public PurchaseOrderServiceImpl(PurchaseOrderRepository purchaseOrderRepository, ProductRepository productRepository, IBatchHasPurchaseOrder batchHasPurchaseOrder, IBatchService batchService, ModelMapper modelMapper) {
         this.purchaseOrderRepository = purchaseOrderRepository;
+        this.productRepository = productRepository;
+        this.batchHasPurchaseOrder = batchHasPurchaseOrder;
+        this.batchService = batchService;
         this.modelMapper = modelMapper;
     }
 
     @Override
     public PurchaseOrderDTO create(PurchaseOrderDTO purchaseOrderDTO) {
-        PurchaseOrder purchaseOrder = new PurchaseOrder();
-
-
+        PurchaseOrder purchaseOrder = modelMapper.map(purchaseOrderDTO, PurchaseOrder.class);
         purchaseOrderRepository.save(purchaseOrder);
+
+        for(ProductBatchOrderDTO productBO : purchaseOrderDTO.getProducts()) {
+            Product product = productRepository.findById(productBO.getProductId()).orElseThrow();
+
+            for(BatchDTO batch : batchService.findAll()) {
+                if (batch.getProductId().equals(product.getProductId())) {
+                    if(batch.getCurrentQuantity() >= productBO.getQuantity()) {
+                        batchHasPurchaseOrder.create(new BatchHasPurchaseOrderDTO(null, productBO.getQuantity(), purchaseOrder.getPurchaseOrderId(), batch.getBatchNumber()));
+                        batch.setCurrentQuantity(batch.getCurrentQuantity()-productBO.getQuantity());
+                        batchService.update(batch);
+                    }
+                }
+            }
+        }
         return purchaseOrderDTO;
+
     }
 
     @Override
@@ -83,7 +107,20 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
     }
 
     @Override
-    public Float calcTotalValue(List<ProductDTO> products) {
-        return null;
+    public TotalPriceResponseDTO calcTotalValue(PurchaseOrderDTO purchaseOrderDTO) {
+        Double totalValue = 0.0;
+
+        for(ProductBatchOrderDTO x : purchaseOrderDTO.getProducts()) {
+            Optional<Product> product = productRepository.findById(x.getProductId());
+
+            if (product.isEmpty()) {
+                throw new NoSuchElementException("There is no Product with this Id: " + x.getProductId());
+            }
+
+            Float price = product.get().getPrice();
+            totalValue += x.getQuantity() * price;
+        }
+
+        return new TotalPriceResponseDTO(totalValue);
     }
 }

@@ -1,8 +1,6 @@
 package com.mercadolibre.dambetan01.service.crud.impl;
 
-import com.mercadolibre.dambetan01.dtos.CountryHouseDTO;
 import com.mercadolibre.dambetan01.dtos.ProductDTO;
-import com.mercadolibre.dambetan01.model.CountryHouse;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.service.crud.IProductService;

@@ -41,4 +41,21 @@ public class Batch {
     @OneToMany(mappedBy = "batch")
     private List<BatchHasPurchaseOrder> purchaseOrders;
 
+    @Override
+    public String toString() {
+        return "Batch{" +
+                "batchId=" + batchId +
+                ", minTemperature=" + minTemperature +
+                ", currentTemperature=" + currentTemperature +
+                ", manufacturingDate=" + manufacturingDate +
+                ", manufacturingTime=" + manufacturingTime +
+                ", initialQuantity=" + initialQuantity +
+                ", currentQuantity=" + currentQuantity +
+                ", dueDate=" + dueDate +
+                ", product=" + product +
+                ", section=" + section +
+                ", inboundOrderHasBatch=" + inboundOrderHasBatch +
+                ", purchaseOrders=" + purchaseOrders +
+                '}';
+    }
 }

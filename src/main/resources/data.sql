@@ -71,10 +71,10 @@ INSERT INTO purchase_orders (purchase_order_id,date,order_status, buyer_id_fk) V
 
 
 -- Insert batch_has_purchase_orders
-INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (1,1,3);
-INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (2,1,4);
-INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (3,2,5);
-INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (2,2,7);
-INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (3,3,6);
-INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (1,3,3);
+INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity) VALUES (1,1,3);
+INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity) VALUES (2,1,4);
+INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity) VALUES (3,2,5);
+INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity) VALUES (2,2,7);
+INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity) VALUES (3,3,6);
+INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity) VALUES (1,3,3);
 

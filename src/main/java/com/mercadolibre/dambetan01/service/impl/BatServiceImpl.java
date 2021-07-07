@@ -16,7 +16,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class BatchServiceImpl implements BatchService {
+public class BatServiceImpl implements BatchService {
 
     private final BatchRepository batchRepository;
     private final ProductService productService;
