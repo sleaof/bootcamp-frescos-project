@@ -28,8 +28,7 @@ public class InboundOrderDTO {
     @NotNull(message = "A seção deve ser informada.")
     private SectionDTO section;
 
-    @NotEmpty(message = "Deve conter pelo menos um Lote")
+    @NotEmpty(message = "Deve conter pelo menos um lote")
     @Valid
     private List<BatchDTO> batchStock;
-
 }

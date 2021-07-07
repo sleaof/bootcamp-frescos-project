@@ -6,10 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Validated
 @Builder
 @Data
 @AllArgsConstructor
@@ -36,11 +38,11 @@ public class BatchDTO {
     private Long currentQuantity;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate  manufacturingDate;
+    private LocalDate manufacturingDate;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate  manufacturingTime;
+    private LocalDate manufacturingTime;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate  dueDate;
+    private LocalDate dueDate;
 }
