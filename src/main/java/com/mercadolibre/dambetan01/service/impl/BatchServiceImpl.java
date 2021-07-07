@@ -31,7 +31,7 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) {
+    public BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) throws Throwable {
         BatchStockResponseDTO batchStockResponseDTO = new BatchStockResponseDTO();
         List<BatchDTO> batchStock = new ArrayList<>();
         Section section = buildSectionToBatchStock(inboundOrderDTO);

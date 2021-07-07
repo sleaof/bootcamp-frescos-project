@@ -8,7 +8,7 @@ public interface BatchService {
 
     Batch findBatchByBatchNumber(Long batchNumber);
 
-    BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO);
+    BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) throws Throwable;
 
     BatchStockResponseDTO updateBatchStock(InboundOrderDTO inboundOrderDTO, Long orderNumber);
 }
