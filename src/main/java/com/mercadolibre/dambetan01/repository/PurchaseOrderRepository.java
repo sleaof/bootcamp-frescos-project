@@ -17,5 +17,4 @@ public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, Lo
             "inner join purchase_orders as po on bp.purchase_order_id_fk = po.purchase_order_id " +
             "where po.purchase_order_id = :orderId", nativeQuery = true)
     List<JSONObject> findProductsFromOrderById(@Param("orderId") Long orderId);
-
 }
