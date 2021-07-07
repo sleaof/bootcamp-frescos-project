@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IPurchaseOrderService extends ICRUD<PurchaseOrderDTO>{
 
-    List<ProductResponseDTO> selectProductsFromOrderId(Long id);
+    List<ProductResponseDTO> findProductsByOrderId(Long id);
 
     Float calcTotalValue(List<ProductDTO> product);
 }

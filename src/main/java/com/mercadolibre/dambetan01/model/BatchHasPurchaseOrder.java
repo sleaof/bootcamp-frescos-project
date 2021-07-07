@@ -2,6 +2,7 @@ package com.mercadolibre.dambetan01.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,19 +12,20 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@IdClass(BatchHasPurchaseOrderPk.class)
+@NoArgsConstructor
 public class BatchHasPurchaseOrder {
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "batch_id", referencedColumnName = "batchId")
-    private Batch batch;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long batchHasPurchaseOrderId;
+    private Integer quantity;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "purchaseOrder_id", referencedColumnName = "purchaseOrderId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "purchase_order_id_fk", nullable = false)
     private PurchaseOrder purchaseOrder;
 
-    private Integer quantity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "batch_id_fk", nullable = false)
+    private Batch batch;
 
 }

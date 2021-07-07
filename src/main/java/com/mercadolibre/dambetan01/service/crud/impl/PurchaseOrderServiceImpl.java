@@ -1,5 +1,6 @@
 package com.mercadolibre.dambetan01.service.crud.impl;
 
+import com.mercadolibre.dambetan01.dtos.ProductBatchOrderDTO;
 import com.mercadolibre.dambetan01.dtos.ProductDTO;
 import com.mercadolibre.dambetan01.dtos.PurchaseOrderDTO;
 import com.mercadolibre.dambetan01.dtos.response.ProductResponseDTO;
@@ -29,11 +30,9 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
 
     @Override
     public PurchaseOrderDTO create(PurchaseOrderDTO purchaseOrderDTO) {
-        //checar estoque
-        //diminuir estoque
+        PurchaseOrder purchaseOrder = new PurchaseOrder();
 
 
-        PurchaseOrder purchaseOrder = modelMapper.map(purchaseOrderDTO, PurchaseOrder.class);
         purchaseOrderRepository.save(purchaseOrder);
         return purchaseOrderDTO;
     }
@@ -76,7 +75,7 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
 
 
     @Override
-    public List<ProductResponseDTO> selectProductsFromOrderId(Long id) {
+    public List<ProductResponseDTO> findProductsByOrderId(Long id) {
         return purchaseOrderRepository.findProductsFromOrderById(id)
                 .stream()
                 .map(product -> modelMapper.map(product, ProductResponseDTO.class))

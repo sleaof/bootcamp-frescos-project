@@ -21,7 +21,7 @@ public class PurchaseOrderController {
 
     @GetMapping("/fresh-products/orders/")
     public List<ProductResponseDTO> selectedProductsFromOrderId(@RequestParam("orderId") Long orderId){
-        return purchaseOrderService.selectProductsFromOrderId(orderId);
+        return purchaseOrderService.findProductsByOrderId(orderId);
     }
 
     @PostMapping("/fresh-products/orders/")
