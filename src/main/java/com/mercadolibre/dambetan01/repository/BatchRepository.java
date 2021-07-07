@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface BatchRepository extends JpaRepository<Batch, Long> {
 
-    @Query(value = "select warehouse_id, current_quantity from view_warehouse_product_totalQnty where product_id = :productId", nativeQuery = true)
+    @Query(value = "Select warehouse_id, sum(current_quantity) FROM view_warehouse_product_totalQnty where product_id = :productId GROUP BY warehouse_id;", nativeQuery = true)
     List<JSONObject> productIdFromWarehouses(@Param("productId") Long productId);
 }
