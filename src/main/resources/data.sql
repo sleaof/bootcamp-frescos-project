@@ -78,3 +78,12 @@ INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity
 INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity) VALUES (3,3,6);
 INSERT INTO batch_has_purchase_orders (batch_id_fk,purchase_order_id_fk,quantity) VALUES (1,3,3);
 
+
+-- View
+CREATE OR REPLACE VIEW view_products_from_order_by_id AS
+SELECT po.purchase_order_id, p.product_id AS productId, p.product_name AS productName, bp.quantity AS quantity
+FROM products AS p
+INNER JOIN batch AS b ON p.product_id = b.product_id_fk
+INNER JOIN batch_has_purchase_orders AS bp ON b.batch_id = bp.batch_id_fk
+INNER JOIN purchase_orders AS po ON bp.purchase_order_id_fk = po.purchase_order_id;
+
