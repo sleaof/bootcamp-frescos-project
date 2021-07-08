@@ -15,6 +15,6 @@ public interface BatchService {
 
     BatchStockResponseDTO updateBatchStock(InboundOrderDTO inboundOrderDTO, Long orderNumber);
 
-    List<JSONObject> checkProductsLocationInWarehouse(Long productId, String filter, Long warehouseId);
+    List<JSONObject> checkProductsLocationInWarehouse(Long productId, String orderType, Long warehouseId);
 
 }

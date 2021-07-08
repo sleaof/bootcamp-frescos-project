@@ -69,9 +69,11 @@ public class BatchServiceImpl implements BatchService {
 
     @Override
     public List<JSONObject> checkProductsLocationInWarehouse(Long productId, String orderType, Long warehouseId){
-
-            List<JSONObject> query = batchRepository.checkProductsLocationInWarehouse(productId, warehouseId);
-            return query;
+        productService.findById(productId);
+        warehouseService.findById(warehouseId);
+        if (orderType.equalsIgnoreCase("C"))
+            return batchRepository.checkProductsLocationInWarehouseCurrentQuantity( productId, warehouseId);
+        return batchRepository.checkProductsLocationInWarehouseDueDate(productId, warehouseId);
     }
 
     public Section buildSectionToBatchStock(InboundOrderDTO inboundOrderDTO) {
