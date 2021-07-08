@@ -40,21 +40,18 @@ public class BatchServiceImpl implements IBatchService {
 
     @Override
     public void delete(Long id) {
-        Optional<Batch> opt = batchRepository.findById(id);
-        if (opt.isEmpty()) {
-            throw new NoSuchElementException("There is no Batch with this Id: " + id);
-        }
+        batchRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum estoque com este Id: " + id));
+
         batchRepository.deleteById(id);
     }
 
     @Override
     public BatchDTO findById(Long id) {
-        Optional<Batch> opt = batchRepository.findById(id);
+        Batch batch = batchRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum estoque com este Id: " + id));
 
-        if (opt.isEmpty()) {
-            throw new NoSuchElementException("There is no Batch with this Id: " + id);
-        }
-        return modelMapper.map(opt.get(), BatchDTO.class);
+        return modelMapper.map(batch, BatchDTO.class);
     }
 
     @Override

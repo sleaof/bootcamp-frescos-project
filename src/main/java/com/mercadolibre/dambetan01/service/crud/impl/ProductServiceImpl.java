@@ -42,21 +42,18 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void delete(Long id) {
-        Optional<Product> opt = productRepository.findById(id);
-        if (opt.isEmpty()) {
-            throw new NoSuchElementException("There is no Product with this Id: " + id);
-        }
+        productRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum produto com este Id: " + id));
+
         productRepository.deleteById(id);
     }
 
     @Override
     public ProductDTO findById(Long id) {
-        Optional<Product> opt = productRepository.findById(id);
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum produto com este Id: " + id));
 
-        if (opt.isEmpty()) {
-            throw new NoSuchElementException("There is no Product with this Id: " + id);
-        }
-        return modelMapper.map(opt.get(), ProductDTO.class);
+        return modelMapper.map(product, ProductDTO.class);
     }
 
     @Override
