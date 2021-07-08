@@ -23,10 +23,10 @@ public class PurchaseOrderController {
     @GetMapping("/fresh-products/")
     public String selectedAllProducts(){ return "Deu bom"; }
 
-    @GetMapping("/fresh-products/list")
-    public String selectedAllProductsByCategory(@RequestParam("category") String category){
-        return "Deu bom2";
-    }
+//    @GetMapping("/fresh-products/list")
+//    public String selectedAllProductsByCategory(@RequestParam("category") String category){
+//        return "Deu bom2";
+//    }
 
     @GetMapping("/fresh-products/orders/")
     public List<JSONObject> selectedProductsFromOrderId(@RequestParam("orderId") Long orderId){
