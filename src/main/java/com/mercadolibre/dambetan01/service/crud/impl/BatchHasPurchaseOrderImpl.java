@@ -15,11 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class BatchHasPurchaseOrderImpl implements IBatchHasPurchaseOrder {
 
-    private BatchHasPurchaseOrderRepository batchHasPurchaseOrderRepository;
+    private final BatchHasPurchaseOrderRepository batchHasPurchaseOrderRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-    public BatchHasPurchaseOrderImpl(BatchHasPurchaseOrderRepository batchHasPurchaseOrderRepository, ModelMapper modelMapper) {
+    public BatchHasPurchaseOrderImpl(BatchHasPurchaseOrderRepository batchHasPurchaseOrderRepository,
+                                     ModelMapper modelMapper) {
         this.batchHasPurchaseOrderRepository = batchHasPurchaseOrderRepository;
         this.modelMapper = modelMapper;
     }
@@ -41,7 +42,7 @@ public class BatchHasPurchaseOrderImpl implements IBatchHasPurchaseOrder {
     @Override
     public void delete(Long id) {
         Optional<BatchHasPurchaseOrder> opt = batchHasPurchaseOrderRepository.findById(id);
-        if (!opt.isPresent()) {
+        if (opt.isEmpty()) {
             throw new NoSuchElementException("There is no Batch Has Purchase Order with this Id: " + id);
         }
         batchHasPurchaseOrderRepository.deleteById(id);
@@ -50,7 +51,7 @@ public class BatchHasPurchaseOrderImpl implements IBatchHasPurchaseOrder {
     @Override
     public BatchHasPurchaseOrderDTO findById(Long id) {
         Optional<BatchHasPurchaseOrder> opt = batchHasPurchaseOrderRepository.findById(id);
-        if (!opt.isPresent()) {
+        if (opt.isEmpty()) {
             throw new NoSuchElementException("There is no Batch Has Purchase Order with this Id: " + id);
         }
         return modelMapper.map(opt.get(), BatchHasPurchaseOrderDTO.class);

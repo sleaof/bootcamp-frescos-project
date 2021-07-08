@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements IProductService {
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     public ProductServiceImpl(ProductRepository productRepository, ModelMapper modelMapper) {
         this.productRepository = productRepository;
@@ -43,7 +43,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public void delete(Long id) {
         Optional<Product> opt = productRepository.findById(id);
-        if (!opt.isPresent()) {
+        if (opt.isEmpty()) {
             throw new NoSuchElementException("There is no Product with this Id: " + id);
         }
         productRepository.deleteById(id);
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements IProductService {
     public ProductDTO findById(Long id) {
         Optional<Product> opt = productRepository.findById(id);
 
-        if (!opt.isPresent()) {
+        if (opt.isEmpty()) {
             throw new NoSuchElementException("There is no Product with this Id: " + id);
         }
         return modelMapper.map(opt.get(), ProductDTO.class);
@@ -74,5 +74,4 @@ public class ProductServiceImpl implements IProductService {
                 .map(product -> modelMapper.map(product, ProductDTO.class))
                 .collect(Collectors.toList());
     }
-
 }

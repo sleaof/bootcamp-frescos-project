@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class ProductController {
 
-    private IProductService productService;
+    private final IProductService productService;
 
     public ProductController(ProductServiceImpl productService) {
         this.productService = productService;

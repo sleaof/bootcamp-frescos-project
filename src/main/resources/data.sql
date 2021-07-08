@@ -14,6 +14,7 @@ INSERT INTO accounts (id, password, rol, username, id_country_house_fk) VALUES (
 INSERT INTO products (product_id, product_name, product_category, temperature, validated, price) VALUES ('1','Carne', 'FROZEN', 0.0, '2021-05-21',20.0);
 INSERT INTO products (product_id, product_name, product_category, temperature, validated, price) VALUES ('2','Peixe', 'FRESH', 0.0, '2021-05-21',40.0);
 INSERT INTO products (product_id, product_name, product_category, temperature, validated, price) VALUES ('3','Maca', 'REFRIGERATED', 0.0, '2021-05-21',60.0);
+INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Margarina', 'REFRIGERATED', 4.0, '2021-06-21',4.0);
 
 
 INSERT INTO addresses (address_id, address_name, city, state, street) VALUES ('1', 'fullfilment Cajamar', 'Cajamar', 'SP', 'Avenida Doutor Antonio Joao Abdalla, Nº 1111');

@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 public class PurchaseOrderController {
 
-    private IPurchaseOrderService purchaseOrderService;
+    private final IPurchaseOrderService purchaseOrderService;
 
     public PurchaseOrderController(IPurchaseOrderService purchaseOrderService) {
         this.purchaseOrderService = purchaseOrderService;

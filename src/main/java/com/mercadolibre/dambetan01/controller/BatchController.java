@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RestController
 public class BatchController {
 
-    private BatServiceImpl batchService;
+    private final BatServiceImpl batchService;
 
     @PostMapping("/fresh-products/inbounded/")
     public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody InboundOrderDTO inboundOrderDTO) {
