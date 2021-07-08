@@ -3,13 +3,9 @@ package com.mercadolibre.dambetan01.service.crud.impl;
 import com.mercadolibre.dambetan01.dtos.*;
 import com.mercadolibre.dambetan01.dtos.response.ProductResponseDTO;
 import com.mercadolibre.dambetan01.dtos.response.TotalPriceResponseDTO;
-import com.mercadolibre.dambetan01.mapper.BatchMapper;
 import com.mercadolibre.dambetan01.model.*;
 
-import com.mercadolibre.dambetan01.repository.BatchHasPurchaseOrderRepository;
-import com.mercadolibre.dambetan01.repository.BatchRepository;
-import com.mercadolibre.dambetan01.repository.ProductRepository;
-import com.mercadolibre.dambetan01.repository.PurchaseOrderRepository;
+import com.mercadolibre.dambetan01.repository.*;
 import com.mercadolibre.dambetan01.service.crud.IBatchHasPurchaseOrder;
 import com.mercadolibre.dambetan01.service.crud.IBatchService;
 import com.mercadolibre.dambetan01.service.crud.IPurchaseOrderService;
@@ -28,16 +24,9 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
     private ProductRepository productRepository;
     private IBatchHasPurchaseOrder batchHasPurchaseOrder;
     private IBatchService batchService;
+    private BuyerRepository buyerRepository;
 
     private ModelMapper modelMapper;
-
-    public PurchaseOrderServiceImpl(PurchaseOrderRepository purchaseOrderRepository, ProductRepository productRepository, IBatchHasPurchaseOrder batchHasPurchaseOrder, IBatchService batchService, ModelMapper modelMapper) {
-        this.purchaseOrderRepository = purchaseOrderRepository;
-        this.productRepository = productRepository;
-        this.batchHasPurchaseOrder = batchHasPurchaseOrder;
-        this.batchService = batchService;
-        this.modelMapper = modelMapper;
-    }
 
     @Override
     public PurchaseOrderDTO create(PurchaseOrderDTO purchaseOrderDTO) {
