@@ -15,7 +15,6 @@ INSERT INTO products (product_name, product_category, temperature, validated, pr
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Massa-Congelada', 'FROZEN', 0.0, '2021-06-21',25.0);
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Picolé de Abacate', 'FROZEN', 0.0, '2021-07-07',4.0);
 
-
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Peixe', 'FRESH', 5.0, '2021-06-21',30.0);
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Maca-Verde', 'FRESH', 20.0, '2021-05-21',2.5);
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Laranja', 'FRESH', 20.0, '2021-05-21',3.0);
@@ -54,17 +53,39 @@ INSERT INTO sections (section_name_category, min_temperature, max_temperature, c
 
 -- Insert lotes de um determinado produto
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
-manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-15.0', '2021-07-07', '2021-05-21', '50', '50', '2021-10-07','3', '3');
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '10', '2021-10-21','1', '3');
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
-manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '60', '2021-10-21','2', '3');
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '25', '2021-8-21','1', '3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '50', '2021-6-21','1', '3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '60', '2021-6-21','1', '3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '30', '2021-5-21','1', '3');
+
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '10', '2021-10-21','2', '3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '25', '2021-8-21','2', '3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '50', '2021-6-21','2', '3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '60', '2021-6-21','2', '3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '30', '2021-5-21','2', '3');
+
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-8.0', '2021-07-21', '2021-07-07', '150', '150', '2021-10-21','3','3');
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-15.0', '2021-07-07', '2021-05-21', '50', '50', '2021-10-07','3', '3');
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
-manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '60', '2021-10-21','2', '3');
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-8.0', '2021-07-21', '2021-07-07', '130', '130', '2021-12-21','3','3');
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
-manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-8.0', '2021-07-21', '2021-07-07', '150', '150', '2021-10-21','3','3');
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-8.0', '2021-07-21', '2021-06-07', '120', '150', '2021-10-21','3','3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-8.0', '2021-07-21', '2021-07-07', '150', '200', '2021-8-21','3','3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-8.0', '2021-07-21', '2021-07-07', '150', '200', '2021-8-21','3','3');
 
 
 INSERT INTO inbound_order ( order_date ) VALUES ( '2021-05-21');
@@ -102,4 +123,3 @@ CREATE OR REPLACE VIEW view_product_batch_in_warehouse AS
 SELECT B.batch_id, B.current_quantity, B.product_id_fk, B.due_date, P.product_name, B.section_id_fk, S.warehouse_id_fk FROM batch AS B
 INNER JOIN products AS P ON B.product_id_fk = P.product_id
 INNER JOIN sections AS S ON B.section_id_fk = S.section_id;
-
