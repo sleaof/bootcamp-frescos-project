@@ -19,7 +19,6 @@ INSERT INTO products (product_name, product_category, temperature, validated, pr
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Maca-Verde', 'FRESH', 20.0, '2021-05-21',2.5);
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Laranja', 'FRESH', 20.0, '2021-05-21',3.0);
 
-
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Margarina', 'REFRIGERATED', 4.0, '2021-06-21',4.0);
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Queijo-Fresco', 'REFRIGERATED', 3.0, '2021-05-21',16.0);
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Iogurte', 'REFRIGERATED', 8.0, '2021-05-21',8.0);
@@ -118,6 +117,7 @@ INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALU
 INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (2,2,7);
 INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (3,3,6);
 INSERT INTO batch_has_purchase_orders (batch_id,purchase_order_id,quantity) VALUES (1,3,3);
+
 
 CREATE OR REPLACE VIEW view_product_batch_in_warehouse AS
 SELECT B.batch_id, B.current_quantity, B.product_id_fk, B.due_date, P.product_name, B.section_id_fk, S.warehouse_id_fk FROM batch AS B

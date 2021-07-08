@@ -2,6 +2,7 @@ package com.mercadolibre.dambetan01.controller;
 
 import com.mercadolibre.dambetan01.dtos.InboundOrderDTO;
 import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
+import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.service.impl.BatchServiceImpl;
 import lombok.AllArgsConstructor;
 import org.json.simple.JSONObject;
@@ -20,7 +21,7 @@ public class BatchController {
     private BatchServiceImpl batchService;
 
     @PostMapping("/fresh-products/inbounded/")
-    public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody  InboundOrderDTO inboundOrderDTO){
+    public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody  InboundOrderDTO inboundOrderDTO) throws Throwable {
         return new ResponseEntity<>(batchService.createBatchStock(inboundOrderDTO), HttpStatus.CREATED);
     }
 

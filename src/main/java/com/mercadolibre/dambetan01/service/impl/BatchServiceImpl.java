@@ -33,7 +33,7 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) {
+    public BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) throws Throwable {
         BatchStockResponseDTO batchStockResponseDTO = new BatchStockResponseDTO();
         List<BatchDTO> batchStock = new ArrayList<>();
         Section section = buildSectionToBatchStock(inboundOrderDTO);
@@ -73,7 +73,11 @@ public class BatchServiceImpl implements BatchService {
         warehouseService.findById(warehouseId);
         if (orderType.equalsIgnoreCase("C"))
             return batchRepository.checkProductsLocationInWarehouseCurrentQuantity( productId, warehouseId);
-        return batchRepository.checkProductsLocationInWarehouseDueDate(productId, warehouseId);
+        if (orderType.equalsIgnoreCase("F"))
+            return batchRepository.checkProductsLocationInWarehouseDueDate(productId, warehouseId);
+        else {
+            throw new NotFoundException("Filtro de ordenação inválido " + orderType);
+        }
     }
 
     public Section buildSectionToBatchStock(InboundOrderDTO inboundOrderDTO) {
