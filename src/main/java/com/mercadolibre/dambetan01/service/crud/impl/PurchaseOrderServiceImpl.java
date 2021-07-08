@@ -15,12 +15,12 @@ import com.mercadolibre.dambetan01.service.crud.IBatchHasPurchaseOrder;
 import com.mercadolibre.dambetan01.service.crud.IBatchService;
 import com.mercadolibre.dambetan01.service.crud.IPurchaseOrderService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,9 +53,7 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
         PurchaseOrder purchaseOrder = modelMapper.map(purchaseOrderDTO, PurchaseOrder.class);
 
         isValid(purchaseOrderDTO);
-
         purchaseOrderRepository.save(purchaseOrder);
-
         addProducts(purchaseOrderDTO, purchaseOrder);
 
         return purchaseOrderDTO;
@@ -71,21 +69,18 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
 
     @Override
     public void delete(Long id) {
-        Optional<PurchaseOrder> opt = purchaseOrderRepository.findById(id);
-        if (opt.isEmpty()) {
-            throw new NotFoundException("There is no Purchase Order with this Id: " + id);
-        }
+        purchaseOrderRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Não foi encontrada nenhuma ordem de compra com este Id: " + id));
+
         purchaseOrderRepository.deleteById(id);
     }
 
     @Override
     public PurchaseOrderDTO findById(Long id) {
-        Optional<PurchaseOrder> opt = purchaseOrderRepository.findById(id);
+        PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Não foi encontrada nenhuma ordem de compra com este Id: " + id));
 
-        if (opt.isEmpty()) {
-            throw new NotFoundException("There is no Purchase Order with this Id: " + id);
-        }
-        return modelMapper.map(opt.get(), PurchaseOrderDTO.class);
+        return modelMapper.map(purchaseOrder, PurchaseOrderDTO.class);
     }
 
     @Override
@@ -108,63 +103,56 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
     public TotalPriceResponseDTO calcTotalValue(PurchaseOrderDTO purchaseOrderDTO) {
         double totalValue = 0.0;
 
-        List<Product> products = getValidProducts(purchaseOrderDTO);
+        for(ProductBatchOrderDTO productBatchOrderDTO : getValidProducts(purchaseOrderDTO).getProducts()) {
+            Product product = productRepository.findById(productBatchOrderDTO.getProductId())
+                    .orElseThrow(() -> new NotFoundException("Não foi encontrado nenhum Produto com este Id: " + productBatchOrderDTO.getProductId()));
 
-        for(ProductBatchOrderDTO x : purchaseOrderDTO.getProducts()) {
-            Product product = productRepository.findById(x.getProductId()).orElseThrow(() -> new NotFoundException("There is no Product with this Id: " + x.getProductId()));
-
-            if(products.contains(product)) {
-                Float price = product.getPrice();
-                totalValue += x.getQuantity() * price;
-            }
+            totalValue += productBatchOrderDTO.getQuantity() * product.getPrice();
         }
 
         return new TotalPriceResponseDTO(totalValue);
     }
 
     public void isValid(PurchaseOrderDTO purchaseOrderDTO) {
-        buyerRepository.findById(purchaseOrderDTO.getBuyer()).orElseThrow(() -> new NotFoundException("There is no Buyer with this Id: " + purchaseOrderDTO.getBuyer()));
+        buyerRepository.findById(purchaseOrderDTO.getBuyer()).orElseThrow(() -> new NotFoundException("Não foi encontrado nenhum Comprador com este Id: " + purchaseOrderDTO.getBuyer()));
 
         for (ProductBatchOrderDTO productBO : purchaseOrderDTO.getProducts()) {
             for(BatchDTO batch : batchService.findAll()) {
                 if (batch.getProductId().equals(productBO.getProductId())) {
                     if(batch.getCurrentQuantity() < productBO.getQuantity())
-                        throw new NotFoundException("The quantity of the product must be lower than the quantity on stock.");
+                        throw new NotFoundException("A quantidade do Produto deve ser menor do que a quantidade no estoque.");
                 }
             }
         }
     }
 
-    public List<Product> getValidProducts(PurchaseOrderDTO purchaseOrderDTO) {
-        List<Product> products = new ArrayList<>();
+    public PurchaseOrderDTO getValidProducts(PurchaseOrderDTO purchaseOrderDTO) {
+        List<ProductBatchOrderDTO> productsBO = new ArrayList<>();
         for (ProductBatchOrderDTO productBO : purchaseOrderDTO.getProducts()) {
-            Product product = productRepository.findById(productBO.getProductId()).orElseThrow(() -> new NotFoundException("There is no Product with this Id: " + productBO.getProductId()));
-            if (product.getValidated().isAfter(LocalDate.now().plusDays(21))) {
-                products.add(product);
+            Product product = productRepository.findById(productBO.getProductId())
+                    .orElseThrow(() -> new NotFoundException("Não foi encontrado nenhum Produto com este Id: " + productBO.getProductId()));
+            if (!product.getValidated().isAfter(LocalDate.now().plusDays(21))) {
+                productsBO.add(productBO);
             }
         }
+        purchaseOrderDTO.getProducts().removeAll(productsBO);
 
-        if(products.isEmpty())
-            throw new NotFoundException("No valid products found.");
-
-        return products;
+        return purchaseOrderDTO;
     }
 
     public void addProducts(PurchaseOrderDTO purchaseOrderDTO, PurchaseOrder purchaseOrder) {
-        List<Product> products = getValidProducts(purchaseOrderDTO);
-        for(ProductBatchOrderDTO productBO : purchaseOrderDTO.getProducts()) {
-            Product product = productRepository.findById(productBO.getProductId()).orElseThrow(() -> new NotFoundException("There is no Product with this Id: " + productBO.getProductId()));
+        for(ProductBatchOrderDTO productBO : getValidProducts(purchaseOrderDTO).getProducts()) {
+            Product product = productRepository.findById(productBO.getProductId())
+                    .orElseThrow(() -> new NotFoundException("There is no Product with this Id: " + productBO.getProductId()));
 
-            if(products.contains(product)){
-                for(BatchDTO batch : batchService.findAll()) {
-                    if (batch.getProductId().equals(product.getProductId())) {
-                        if(batch.getCurrentQuantity() >= productBO.getQuantity()) {
-                            batchHasPurchaseOrder.create(new BatchHasPurchaseOrderDTO(null, productBO.getQuantity(), purchaseOrder.getPurchaseOrderId(), batch.getBatchNumber()));
-                            batch.setCurrentQuantity(batch.getCurrentQuantity() - productBO.getQuantity());
-                            batchService.update(batch);
-                        } else {
-                            throw new NotFoundException("The quantity of the product must be lower than the quantity on stock.");
-                        }
+            for(BatchDTO batch : batchService.findAll()) {
+                if (batch.getProductId().equals(product.getProductId())) {
+                    if(batch.getCurrentQuantity() >= productBO.getQuantity()) {
+                        batchHasPurchaseOrder.create(new BatchHasPurchaseOrderDTO(null, productBO.getQuantity(), purchaseOrder.getPurchaseOrderId(), batch.getBatchNumber()));
+                        batch.setCurrentQuantity(batch.getCurrentQuantity() - productBO.getQuantity());
+                        batchService.update(batch);
+                    } else {
+                        throw new NotFoundException("The quantity of the product must be lower than the quantity on stock.");
                     }
                 }
             }
