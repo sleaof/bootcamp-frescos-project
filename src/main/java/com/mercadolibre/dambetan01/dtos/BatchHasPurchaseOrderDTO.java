@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
@@ -19,12 +20,13 @@ public class BatchHasPurchaseOrderDTO {
     @JsonIgnore
     private Long batchHasPurchaseOrderId;
 
-    @NotNull(message = "Quantity is required")
+    @NotNull(message = "Deve ser informada a quantidade.")
+    @Range(min = 0, message = "Deve ser informado um valor positivo")
     private Integer quantity;
 
-    @NotNull(message = "PurchaseOrder id is required")
+    @NotNull(message = "Deve ser informada a ordem de compra.")
     private Long purchaseOrderId;
 
-    @NotNull(message = "Batch id is required")
+    @NotNull(message = "Deve ser informado o lote.")
     private Long batchId;
 }

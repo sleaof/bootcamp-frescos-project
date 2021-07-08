@@ -1,4 +1,5 @@
 package com.mercadolibre.dambetan01.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name="batch")
+@Table(name = "batch")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,8 +22,8 @@ public class Batch {
     private Long batchId;
     private Double minTemperature;
     private Double currentTemperature;
-    private LocalDate  manufacturingDate;
-    private LocalDate  manufacturingTime;
+    private LocalDate manufacturingDate;
+    private LocalDate manufacturingTime;
     private Long initialQuantity;
     private Long currentQuantity;
     private LocalDate dueDate;
@@ -40,22 +41,4 @@ public class Batch {
 
     @OneToMany(mappedBy = "batch")
     private List<BatchHasPurchaseOrder> purchaseOrders;
-
-    @Override
-    public String toString() {
-        return "Batch{" +
-                "batchId=" + batchId +
-                ", minTemperature=" + minTemperature +
-                ", currentTemperature=" + currentTemperature +
-                ", manufacturingDate=" + manufacturingDate +
-                ", manufacturingTime=" + manufacturingTime +
-                ", initialQuantity=" + initialQuantity +
-                ", currentQuantity=" + currentQuantity +
-                ", dueDate=" + dueDate +
-                ", product=" + product +
-                ", section=" + section +
-                ", inboundOrderHasBatch=" + inboundOrderHasBatch +
-                ", purchaseOrders=" + purchaseOrders +
-                '}';
-    }
 }

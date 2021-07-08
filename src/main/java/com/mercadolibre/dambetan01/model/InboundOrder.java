@@ -8,7 +8,7 @@ import java.util.List;
 
 @Builder
 @Entity
-@Table(name="inbound_order")
+@Table(name = "inbound_order")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,8 +23,7 @@ public class InboundOrder {
     @OneToMany(mappedBy = "inboundOrder")
     private List<InboundOrderHasBatch> inboundOrderHasBatches;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "inbound_order_id", referencedColumnName = "seller_id")
     private Seller seller;
-
 }

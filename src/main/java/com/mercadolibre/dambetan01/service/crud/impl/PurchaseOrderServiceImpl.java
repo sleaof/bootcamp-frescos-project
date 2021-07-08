@@ -3,12 +3,14 @@ package com.mercadolibre.dambetan01.service.crud.impl;
 import com.mercadolibre.dambetan01.dtos.*;
 import com.mercadolibre.dambetan01.dtos.response.ProductResponseDTO;
 import com.mercadolibre.dambetan01.dtos.response.TotalPriceResponseDTO;
+
 import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.model.*;
 
 import com.mercadolibre.dambetan01.repository.BuyerRepository;
 import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.repository.PurchaseOrderRepository;
+
 import com.mercadolibre.dambetan01.service.crud.IBatchHasPurchaseOrder;
 import com.mercadolibre.dambetan01.service.crud.IBatchService;
 import com.mercadolibre.dambetan01.service.crud.IPurchaseOrderService;
@@ -18,7 +20,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -127,10 +128,6 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
 
         for(ProductBatchOrderDTO x : purchaseOrderDTO.getProducts()) {
             Product product = productRepository.findById(x.getProductId()).orElseThrow(() -> new NotFoundException("There is no Product with this Id: " + x.getProductId()));
-
-//            if (product.isEmpty()) {
-//                throw new NotFoundException("There is no Product with this Id: " + x.getProductId());
-//            }
 
             if(products.contains(product)) {
                 Float price = product.getPrice();

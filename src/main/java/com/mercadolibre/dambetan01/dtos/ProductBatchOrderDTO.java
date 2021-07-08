@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
@@ -15,9 +16,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class ProductBatchOrderDTO {
 
-    @NotNull(message = "Product id is required")
     private Long productId;
 
-    @NotNull(message = "Product quantity is required")
+    @NotNull(message = "Deve ser informada a quantidade.")
+    @Range(min = 0, message = "Deve ser informado um valor positivo")
     private Integer quantity;
 }

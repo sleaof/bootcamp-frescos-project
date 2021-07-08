@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="inbound_order_has_batch")
+@Table(name = "inbound_order_has_batch")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,5 +27,4 @@ public class InboundOrderHasBatch {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "batch_id_fk", nullable = false)
     private Batch batchs;
-
 }
