@@ -142,7 +142,8 @@ INSERT INTO batch_has_purchase_orders (quantity, batch_id_fk, purchase_order_id_
 
 -- Create Views
 CREATE OR REPLACE VIEW view_product_batch_in_warehouse AS
-SELECT B.batch_id, B.current_quantity, B.product_id_fk, B.due_date, P.product_name, P.product_category, B.section_id_fk, S.warehouse_id_fk FROM batch AS B
+SELECT B.batch_id AS batchNumber, B.product_id_fk AS productId, P.product_category AS productType, B.current_quantity AS quantity, B.due_date AS dueDate
+FROM batch AS B
 INNER JOIN products AS P ON B.product_id_fk = P.product_id
 INNER JOIN sections AS S ON B.section_id_fk = S.section_id;
 

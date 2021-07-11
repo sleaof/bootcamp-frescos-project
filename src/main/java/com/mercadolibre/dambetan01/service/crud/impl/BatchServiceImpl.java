@@ -1,6 +1,7 @@
 package com.mercadolibre.dambetan01.service.crud.impl;
 
 import com.mercadolibre.dambetan01.dtos.BatchDTO;
+import com.mercadolibre.dambetan01.dtos.response.BatchResponseDTO;
 import com.mercadolibre.dambetan01.model.Batch;
 import com.mercadolibre.dambetan01.repository.BatchRepository;
 import com.mercadolibre.dambetan01.service.crud.IBatchService;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,6 +67,23 @@ public class BatchServiceImpl implements IBatchService {
         return batchRepository.findAll()
                 .stream()
                 .map(batch -> modelMapper.map(batch, BatchDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BatchResponseDTO> getAllBatchesOffAWarehouseByDueDate(Integer days) {
+        System.out.println(batchRepository.findAllBatchesOffAWarehouseByDueDate(days));
+        return batchRepository.findAllBatchesOffAWarehouseByDueDate(days)
+                .stream()
+                .map(batch -> modelMapper.map(batch, BatchResponseDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BatchResponseDTO> getAllBatchesSortedByDueDateAndCategory(Integer days, String category) {
+        return batchRepository.findAllBatchesSortedByDueDateAndCategory(days, category)
+                .stream()
+                .map(batch -> modelMapper.map(batch, BatchResponseDTO.class))
                 .collect(Collectors.toList());
     }
 }
