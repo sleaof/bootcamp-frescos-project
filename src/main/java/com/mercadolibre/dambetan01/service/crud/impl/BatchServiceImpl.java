@@ -5,7 +5,6 @@ import com.mercadolibre.dambetan01.dtos.response.BatchResponseDTO;
 import com.mercadolibre.dambetan01.model.Batch;
 import com.mercadolibre.dambetan01.repository.BatchRepository;
 import com.mercadolibre.dambetan01.service.crud.IBatchService;
-import org.json.simple.JSONObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
