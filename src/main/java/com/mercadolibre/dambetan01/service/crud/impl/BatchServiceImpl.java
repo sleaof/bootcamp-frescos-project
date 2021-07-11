@@ -34,6 +34,14 @@ public class BatchServiceImpl implements IBatchService {
     @Override
     public BatchDTO update(BatchDTO batchDTO) {
         Batch batch = batchRepository.findById(batchDTO.getBatchNumber()).orElseThrow();
+        batch.setCurrentQuantity(batchDTO.getCurrentQuantity());
+        batch.setCurrentTemperature(batchDTO.getCurrentTemperature());
+        batch.setDueDate(batchDTO.getDueDate());
+        batch.setInitialQuantity(batchDTO.getInitialQuantity());
+        batch.setManufacturingDate(batchDTO.getManufacturingDate());
+        batch.setManufacturingTime(batchDTO.getManufacturingTime());
+        batch.setMinTemperature(batchDTO.getMinTemperature());
+        //batch = modelMapper.map(batchDTO, Batch.class);
         batchRepository.save(batch);
         return batchDTO;
     }

@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class ProductBatchOrderDTO {
 
+    @NotNull(message = "Deve ser informada o Id do produto.")
+    @Range(min = 0, message = "Deve ser informado um valor positivo")
     private Long productId;
 
     @NotNull(message = "Deve ser informada a quantidade.")

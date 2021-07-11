@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,20 +40,18 @@ public class BatchHasPurchaseOrderImpl implements IBatchHasPurchaseOrder {
 
     @Override
     public void delete(Long id) {
-        Optional<BatchHasPurchaseOrder> opt = batchHasPurchaseOrderRepository.findById(id);
-        if (opt.isEmpty()) {
-            throw new NoSuchElementException("There is no Batch Has Purchase Order with this Id: " + id);
-        }
+        batchHasPurchaseOrderRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum registro com este Id: " + id));
+
         batchHasPurchaseOrderRepository.deleteById(id);
     }
 
     @Override
     public BatchHasPurchaseOrderDTO findById(Long id) {
-        Optional<BatchHasPurchaseOrder> opt = batchHasPurchaseOrderRepository.findById(id);
-        if (opt.isEmpty()) {
-            throw new NoSuchElementException("There is no Batch Has Purchase Order with this Id: " + id);
-        }
-        return modelMapper.map(opt.get(), BatchHasPurchaseOrderDTO.class);
+        BatchHasPurchaseOrder batchHasPurchaseOrder = batchHasPurchaseOrderRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Não foi encontrado nenhum registro com este Id: " + id));
+
+        return modelMapper.map(batchHasPurchaseOrder, BatchHasPurchaseOrderDTO.class);
     }
 
     @Override
