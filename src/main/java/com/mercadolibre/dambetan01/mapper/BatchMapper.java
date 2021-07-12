@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BatchMapper {
 
-    public static Batch newBatch(BatchDTO b){
+    public static Batch newBatch(BatchDTO b) {
         Batch batch = new Batch();
         batch.setMinTemperature(b.getMinTemperature());
         batch.setCurrentTemperature(b.getCurrentTemperature());
@@ -21,7 +21,7 @@ public class BatchMapper {
         return batch;
     }
 
-    public static Batch updateBatch(BatchDTO b, Batch batch){
+    public static Batch updateBatch(BatchDTO b, Batch batch) {
         batch.setMinTemperature(b.getMinTemperature());
         batch.setCurrentTemperature(b.getCurrentTemperature());
         batch.setManufacturingDate(b.getManufacturingDate());
@@ -45,5 +45,4 @@ public class BatchMapper {
                 .dueDate(batch.getDueDate())
                 .build();
     }
-
 }

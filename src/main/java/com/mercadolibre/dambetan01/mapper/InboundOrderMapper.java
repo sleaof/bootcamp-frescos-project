@@ -11,5 +11,4 @@ public class InboundOrderMapper {
                 .orderDate(inboundOrderDTO.getOrderDate())
                 .build();
     }
-
 }

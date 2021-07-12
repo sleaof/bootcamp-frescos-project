@@ -11,11 +11,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class WarehouseImpl implements WarehouseService {
 
-    private WarehouseRepository warehouseRepository;
+    private final WarehouseRepository warehouseRepository;
 
     @Override
     public Warehouse findById(Long id) {
-        return warehouseRepository.findById(id).orElseThrow(
-                () -> new NotFoundException("Warehouse " + id));
+        return warehouseRepository.findById(id).orElseThrow(() -> new NotFoundException("Warehouse " + id));
     }
 }

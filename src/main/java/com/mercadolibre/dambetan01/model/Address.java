@@ -9,7 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="addresses")
+@Table(name = "addresses")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,8 +26,7 @@ public class Address {
     @Enumerated(EnumType.STRING)
     private State state;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "warehouse_id")
     private Warehouse warehouse;
-
 }
