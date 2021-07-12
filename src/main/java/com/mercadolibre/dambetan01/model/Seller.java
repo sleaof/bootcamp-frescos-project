@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="seller")
+@Table(name = "seller")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,5 +19,4 @@ public class Seller {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sellerId;
     private String sellerName;
-
 }

@@ -17,5 +17,4 @@ public interface InboundOrderHasBatchRepository extends JpaRepository<InboundOrd
             "ON A.inbound_order_id_fk = B.inbound_order_id " +
             "WHERE B.order_date BETWEEN :firstDate AND :secondDate", nativeQuery = true)
     List<InboundOrderHasBatch> findInboundOrderDate(@Param("firstDate") LocalDate firstDate, @Param("secondDate") LocalDate secondDate);
-
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class InboundOrderServiceImpl implements InboundOrderService {
 
-    private InboundOrderRepository inboundOrderRepository;
+    private final InboundOrderRepository inboundOrderRepository;
 
     @Override
     public InboundOrder findById(Long id) {

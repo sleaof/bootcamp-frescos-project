@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="purchase_orders")
+@Table(name = "purchase_orders")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,16 +21,15 @@ public class PurchaseOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long purchaseOrderId;
-
     private Date date;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    @OneToMany(mappedBy = "purchaseOrder")
+    private List<BatchHasPurchaseOrder> batchHasPurchaseOrders;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer_id_fk", nullable = false)
     private Buyer buyer;
-
-    @OneToMany(mappedBy = "purchaseOrder")
-    private List<BatchHasPurchaseOrder> batches;
 }

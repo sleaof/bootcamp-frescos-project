@@ -23,5 +23,4 @@ public class Supervisor {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "supervisor_id", referencedColumnName = "warehouse_id")
     private Warehouse warehouse;
-
 }
