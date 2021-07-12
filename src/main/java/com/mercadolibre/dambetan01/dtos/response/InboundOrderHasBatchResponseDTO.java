@@ -5,17 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BatchResponseDTO {
+public class InboundOrderHasBatchResponseDTO {
 
-    private Long batchNumber;
-    private Long productId;
-    private String productType;
+
+    private Long inboundOrderHasBatchId;
     private Long quantity;
-    private Date dueDate;
+    private InbounderOrderResponseDTO inboundOrder;
+    private BatchResponseDTO batch;
 }

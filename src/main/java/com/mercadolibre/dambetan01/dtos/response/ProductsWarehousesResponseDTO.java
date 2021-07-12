@@ -1,21 +1,18 @@
 package com.mercadolibre.dambetan01.dtos.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.json.simple.JSONObject;
 
-import java.util.Date;
+import java.util.List;
 
-@Builder
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BatchResponseDTO {
+@Data
+public class ProductsWarehousesResponseDTO {
 
-    private Long batchNumber;
     private Long productId;
-    private String productType;
-    private Long quantity;
-    private Date dueDate;
+    private List<JSONObject> warehouses;
+
 }
