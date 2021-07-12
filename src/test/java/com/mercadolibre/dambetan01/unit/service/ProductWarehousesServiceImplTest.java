@@ -1,7 +1,7 @@
 package com.mercadolibre.dambetan01.unit.service;
 
 import com.mercadolibre.dambetan01.dtos.response.ProductsWarehousesResponseDTO;
-import com.mercadolibre.dambetan01.service.crud.impl.ProductServiceImpl;
+import com.mercadolibre.dambetan01.service.impl.ProdServiceImpl;
 import com.mercadolibre.dambetan01.service.impl.ProductWarehousesServiceImpl;
 import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.repository.ProductRepository;
@@ -28,7 +28,7 @@ public class ProductWarehousesServiceImplTest {
     Product p;
 
     ProductRepository repository = Mockito.mock(ProductRepository.class);
-    ProductServiceImpl service;
+    ProdServiceImpl service;
 
     BatchRepository batchRepository = Mockito.mock(BatchRepository.class);
     ProductWarehousesServiceImpl productWarehousesService;
@@ -36,7 +36,7 @@ public class ProductWarehousesServiceImplTest {
     @BeforeEach
     void setUp(){
 
-        this.service = new ProductServiceImpl(repository);
+        this.service = new ProdServiceImpl(repository);
         this.productWarehousesService= new ProductWarehousesServiceImpl(batchRepository,service,repository);
 
         p = new Product(1L, "carne", 10.0, LocalDate.of(2020, 06, 24), 30.0f, null, null);

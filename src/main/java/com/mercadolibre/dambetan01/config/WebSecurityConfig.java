@@ -1,6 +1,7 @@
 package com.mercadolibre.dambetan01.config;
 
 import com.mercadolibre.dambetan01.security.JWTAuthorizationFilter;
+import lombok.Builder;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,11 +22,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/ping").permitAll()
                 .antMatchers(HttpMethod.GET, "/v3/api-docs").permitAll()
                 .antMatchers(HttpMethod.GET, "/fake").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/v1/fresh-products/inbounded/").permitAll()
-                .antMatchers(HttpMethod.PUT,"/api/v1/fresh-products/inbounded/").permitAll()
+                //Seller-Buyer
+                .antMatchers(HttpMethod.GET, "/api/v1/fresh-products/").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/api/v1/fresh-products/list").hasRole("USER")
+                //RF-006 Jessika Fernandes
+                .antMatchers(HttpMethod.GET, "/api/v1/fresh-products/list/price").hasRole("USER")
+                //RF-006 Stephanie Leao
+                .antMatchers(HttpMethod.GET, "/top-selling-products").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/fresh-products/orders/").hasRole("USER")
+                .antMatchers(HttpMethod.POST, "/fresh-products/orders/").hasRole("USER")
+                .antMatchers(HttpMethod.PUT, "/fresh-products/orders").hasRole("USER")
+                //Representante
+                .antMatchers(HttpMethod.POST,"/api/v1/fresh-products/inbounded/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/api/v1/fresh-products/inbounded/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/fresh-products/list/warehouse").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/fresh-products/warehouse/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/fresh-products/due-date/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/fresh-products/due-date/list/").hasRole("ADMIN")
+                //RF-006 Gabriel Borba Paim
+                .antMatchers(HttpMethod.GET,"/inboud-order/betweendate").hasRole("ADMIN")
                 .anyRequest().authenticated();
         //.and()
-          //      .addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
+        //      .addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
 
     }
 }
