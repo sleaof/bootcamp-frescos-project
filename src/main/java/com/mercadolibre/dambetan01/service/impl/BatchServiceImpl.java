@@ -9,6 +9,8 @@ import com.mercadolibre.dambetan01.model.*;
 import com.mercadolibre.dambetan01.repository.BatchRepository;
 import com.mercadolibre.dambetan01.service.*;
 import lombok.AllArgsConstructor;
+
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -63,6 +65,19 @@ public class BatchServiceImpl implements BatchService {
                 batchStockResponseDTO.setBatchStock(batchStock);
         }
         return batchStockResponseDTO;
+    }
+
+    @Override
+    public List<JSONObject> checkProductsLocationInWarehouse(Long productId, String orderType, Long warehouseId){
+        productService.findById(productId);
+        warehouseService.findById(warehouseId);
+        if (orderType.equalsIgnoreCase("C"))
+            return batchRepository.checkProductsLocationInWarehouseCurrentQuantity( productId, warehouseId);
+        if (orderType.equalsIgnoreCase("F"))
+            return batchRepository.checkProductsLocationInWarehouseDueDate(productId, warehouseId);
+        else {
+            throw new NotFoundException("Filtro de ordenação inválido " + orderType);
+        }
     }
 
     public Section buildSectionToBatchStock(InboundOrderDTO inboundOrderDTO) {
