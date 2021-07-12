@@ -24,7 +24,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
-public class PaymentPurchaseOrder {
+public class PaymentPurchaseOrderTest {
     PurchaseOrder p1,p2;
     ResponseEntity pr;
 
@@ -52,7 +52,7 @@ public class PaymentPurchaseOrder {
         when(service.PayPurchaseOrder(1L)).thenReturn(pr);
 
         ResponseEntity<Payment> pay1 = service.PayPurchaseOrder(1L);
-        
+
         Assert.assertEquals(pay1, service.PayPurchaseOrder(1L));
     }
 

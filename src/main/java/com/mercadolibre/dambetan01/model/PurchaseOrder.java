@@ -32,4 +32,8 @@ public class PurchaseOrder {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer_id_fk", nullable = false)
     private Buyer buyer;
+
+    @OneToOne(mappedBy = "order",cascade = CascadeType.ALL)
+    private Payment payment;
+
 }

@@ -43,6 +43,7 @@ INSERT INTO warehouses (warehouse_name, address_address_id, supervisor_superviso
 
 --Insert a sections de um WareHouse
 INSERT INTO sections (section_name_category, min_temperature, max_temperature, current_temperature, warehouse_id_fk) VALUES ('FROZEN', -15.0, 0.0, -6.0, '1');
+INSERT INTO sections (section_name_category, min_temperature, max_temperature, current_temperature, warehouse_id_fk) VALUES ('FROZEN', -16.0, 0.0, -6.0, '1');
 INSERT INTO sections (section_name_category, min_temperature, max_temperature, current_temperature, warehouse_id_fk) VALUES ('FRESH', 10.1, 20.0, 14.0, '1');
 INSERT INTO sections (section_name_category, min_temperature, max_temperature, current_temperature, warehouse_id_fk) VALUES ('REFRIGERATED', 0.1, 10.0, 2.0, '1');
 INSERT INTO sections (section_name_category, min_temperature, max_temperature, current_temperature, warehouse_id_fk) VALUES ('FROZEN', -15.0, 0.0, -6.0, '2');
@@ -55,7 +56,9 @@ INSERT INTO sections (section_name_category, min_temperature, max_temperature, c
 
 -- Insert lotes de um determinado produto
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
-manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '10', '2021-10-21','1', '3');
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '10', '2021-10-21','1', '1');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '10', '2021-10-21','1', '2');
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('0.0', '8.0', '2021-07-21', '2021-07-07', '40', '25', '2021-8-21','1', '3');
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,

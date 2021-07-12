@@ -68,11 +68,11 @@ public class PurchaseOrderServiceImplTest {
         batchHasPurchaseOrders.add(new BatchHasPurchaseOrder(1L, 2, purchaseOrder, new Batch()));
         productBatchOrderDTOs.add(new ProductBatchOrderDTO(1L, 2));
 
-        purchaseOrder = new PurchaseOrder(1L, new Date(), OrderStatus.PROCESSING, batchHasPurchaseOrders, buyer);
+        purchaseOrder = new PurchaseOrder(1L, new Date(), OrderStatus.PROCESSING, batchHasPurchaseOrders, buyer,null);
         purchaseOrderDTO = new PurchaseOrderDTO(1L, new Date(), OrderStatus.PROCESSING, 1L, productBatchOrderDTOs);
 
-        listOfPurchaseOrders.add(new PurchaseOrder(1L, new Date(), OrderStatus.PROCESSING, batchHasPurchaseOrders, buyer));
-        listOfPurchaseOrders.add(new PurchaseOrder(2L, new Date(), OrderStatus.PROCESSING, batchHasPurchaseOrders, buyer));
+        listOfPurchaseOrders.add(new PurchaseOrder(1L, new Date(), OrderStatus.PROCESSING, batchHasPurchaseOrders, buyer,null));
+        listOfPurchaseOrders.add(new PurchaseOrder(2L, new Date(), OrderStatus.PROCESSING, batchHasPurchaseOrders, buyer,null));
 
         JSONObject object = new JSONObject();
 
