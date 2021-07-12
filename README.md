@@ -143,7 +143,7 @@ Deve ser gerado o Token
 #### GET http://localhost:8082/fresh-products/due-date/list/ 
     @Params days = 10 category = frozen
 
-#### GET http://gabriel_borba_paim/inboud-order/betweendate
+#### GET http://localhost:8082/gabriel_borba_paim/inboud-order/betweendate
     @Params
     firsDate = 2021-05-21
     secondDate = 2021-06-21
