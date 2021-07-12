@@ -20,6 +20,8 @@ INSERT INTO products (product_name, product_category, temperature, validated, pr
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Margarina', 'REFRIGERATED', 4.0, '2021-06-21',4.0);
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Queijo-Fresco', 'REFRIGERATED', 3.0, '2021-05-21',16.0);
 INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Iogurte', 'REFRIGERATED', 8.0, '2021-05-21',8.0);
+INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('Margarina', 'REFRIGERATED', 4.0, '2021-08-30',4.0);
+INSERT INTO products (product_name, product_category, temperature, validated, price) VALUES ('leite', 'REFRIGERATED', 4.0, '2021-08-29',4.0);
 
 
 INSERT INTO addresses (address_name, city, state, street) VALUES ('fullfilment Cajamar', 'Cajamar', 'SP', 'Avenida Doutor Antonio Joao Abdalla, Nº 1111');
@@ -84,6 +86,10 @@ INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-8.0', '2021-07-21', '2021-07-07', '150', '200', '2021-8-21','3','3');
 INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
 manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('-5.0', '-8.0', '2021-07-21', '2021-07-07', '150', '200', '2021-8-21','3','3');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('6.0', '0.0', '2021-07-07', '2021-05-21', '20', '20', '2022-08-07','10', '2');
+INSERT INTO batch (current_temperature, min_temperature, manufacturing_date,
+manufacturing_time, initial_quantity, current_quantity, due_date, product_id_fk, section_id_fk) VALUES ('6.0', '0.0', '2021-07-07', '2021-05-21', '20', '20', '2022-08-07','11', '2');
 
 
 INSERT INTO inbound_order ( order_date ) VALUES ( '2021-05-21');
@@ -161,7 +167,19 @@ GROUP BY w.warehouse_name, product_name
 ORDER BY quantity DESC LIMIT 3;
 
 
-CREATE OR REPLACE VIEW view_product_batch_in_warehouse AS
+CREATE OR REPLACE VIEW view_check_product_batch_in_warehouse AS
 SELECT B.batch_id, B.current_quantity, B.product_id_fk, B.due_date, P.product_name, B.section_id_fk, S.warehouse_id_fk FROM batch AS B
 INNER JOIN products AS P ON B.product_id_fk = P.product_id
 INNER JOIN sections AS S ON B.section_id_fk = S.section_id;
+
+CREATE OR REPLACE VIEW view_product_batch_in_warehouse AS
+SELECT B.batch_id AS batchNumber, B.product_id_fk AS productId, P.product_category AS productType, B.current_quantity AS quantity, B.due_date AS dueDate
+FROM batch AS B
+INNER JOIN products AS P ON B.product_id_fk = P.product_id
+INNER JOIN sections AS S ON B.section_id_fk = S.section_id;
+
+CREATE OR REPLACE VIEW view_warehouse_product_total_quantity AS
+select p.product_id, w.warehouse_id, b.current_quantity from batch as b
+inner join sections as s on b.section_id_fk = s.section_id
+inner join warehouses as w on s.warehouse_id_fk = w.warehouse_id
+inner join products as p on b.product_id_fk = p.product_id;

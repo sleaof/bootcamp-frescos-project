@@ -2,7 +2,6 @@ package com.mercadolibre.dambetan01.controller;
 
 import com.mercadolibre.dambetan01.dtos.ProductDTO;
 import com.mercadolibre.dambetan01.dtos.response.TopSellersResponseDTO;
-import com.mercadolibre.dambetan01.service.crud.IProductService;
 import com.mercadolibre.dambetan01.service.crud.impl.ProductServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,7 @@ public class ProductController {
     }
 
     @GetMapping("/fresh-products/list")
-    public ResponseEntity<List<ProductDTO>> selectedAllProductsByCategory(@RequestParam("category") String category) {
+        public ResponseEntity<List<ProductDTO>> selectedAllProductsByCategory(@RequestParam("category") String category) {
         if (productService.findByCategory(category).isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(productService.findByCategory(category), HttpStatus.OK);
