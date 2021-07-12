@@ -15,4 +15,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value= "select * from view_most_selling_products", nativeQuery = true)
     List<JSONObject> findTheThreeBestSellingProducts();
+
+    @Query(value= "select * from products order by price desc", nativeQuery = true)
+    List<Product> selectAllProductsByOrderByHighestPrice();
+
+    @Query(value= "select * from products order by price asc", nativeQuery = true)
+    List<Product> selectAllProductsByOrderByLowestPrice();
+
 }

@@ -2,6 +2,7 @@ package com.mercadolibre.dambetan01.service.crud.impl;
 
 import com.mercadolibre.dambetan01.dtos.ProductDTO;
 import com.mercadolibre.dambetan01.dtos.response.TopSellersResponseDTO;
+import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.service.crud.IProductService;
@@ -78,5 +79,22 @@ public class ProductServiceImpl implements IProductService {
                 .stream()
                 .map(product -> modelMapper.map(product, TopSellersResponseDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    public List<ProductDTO> selectAllProductsByOrderOfPrice(String orderType) {
+        if (orderType.equalsIgnoreCase("A"))
+            return productRepository.selectAllProductsByOrderByLowestPrice()
+                .stream()
+                .map(product -> modelMapper.map(product, ProductDTO.class))
+                .collect(Collectors.toList());
+        if (orderType.equalsIgnoreCase("D"))
+            return productRepository.selectAllProductsByOrderByHighestPrice()
+                .stream()
+                .map(product -> modelMapper.map(product, ProductDTO.class))
+                .collect(Collectors.toList());
+        else {
+            throw new NotFoundException("Filtro de ordenação inválido " + orderType);
+        }
+
     }
 }

@@ -29,6 +29,13 @@ public class ProductController {
         return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/fresh-products/list/price")
+    public ResponseEntity<List<ProductDTO>> selectAllProductsByOrderOfPrice(@RequestParam("orderType") String orderType) {
+        if (productService.findAll().isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(productService.selectAllProductsByOrderOfPrice(orderType), HttpStatus.OK);
+    }
+
     @GetMapping("/fresh-products/list")
         public ResponseEntity<List<ProductDTO>> selectedAllProductsByCategory(@RequestParam("category") String category) {
         if (productService.findByCategory(category).isEmpty())

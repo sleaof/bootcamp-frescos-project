@@ -166,7 +166,6 @@ INNER JOIN warehouses as w ON s.warehouse_id_fk = w.warehouse_id
 GROUP BY w.warehouse_name, product_name
 ORDER BY quantity DESC LIMIT 3;
 
-
 CREATE OR REPLACE VIEW view_check_product_batch_in_warehouse AS
 SELECT B.batch_id, B.current_quantity, B.product_id_fk, B.due_date, P.product_name, B.section_id_fk, S.warehouse_id_fk FROM batch AS B
 INNER JOIN products AS P ON B.product_id_fk = P.product_id

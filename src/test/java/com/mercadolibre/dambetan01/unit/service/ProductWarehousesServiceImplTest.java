@@ -1,8 +1,8 @@
 package com.mercadolibre.dambetan01.unit.service;
 
 import com.mercadolibre.dambetan01.dtos.response.ProductsWarehousesResponseDTO;
+import com.mercadolibre.dambetan01.service.crud.impl.ProductServiceImpl;
 import com.mercadolibre.dambetan01.service.impl.ProductWarehousesServiceImpl;
-import com.mercadolibre.dambetan01.service.impl.ProductServiceImpl;
 import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.repository.BatchRepository;

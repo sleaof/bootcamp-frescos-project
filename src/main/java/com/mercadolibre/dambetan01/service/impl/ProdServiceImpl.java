@@ -17,4 +17,5 @@ public class ProdServiceImpl implements ProductService {
     public Product findById(Long id) throws NumberFormatException{
             return productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product " + id));
     }
+
 }
