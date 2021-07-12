@@ -23,7 +23,7 @@ public class InboudOrderHasBatchController {
 
     private InboundOrderHasBatchService inboundOrderHasBatchService;
 
-    @GetMapping("/inboudOrderHasBatchOnDateDTO")
+    @GetMapping("/inboud-order/betweendate")
     public ResponseEntity<List<InboundOrderHasBatchResponseDTO>> findInboundBetween(@RequestParam("firstDate") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate firstDate
             , @RequestParam("secondDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate secondDate){
         List<InboundOrderHasBatchResponseDTO> inbound = inboundOrderHasBatchService.findInboundOrderBetweenDate(firstDate,secondDate);

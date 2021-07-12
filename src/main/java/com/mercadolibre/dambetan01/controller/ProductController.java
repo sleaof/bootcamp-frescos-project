@@ -36,7 +36,7 @@ public class ProductController {
         return new ResponseEntity<>(productService.findByCategory(category), HttpStatus.OK);
     }
 
-    @GetMapping("/top-sellers")
+    @GetMapping("/top-selling-products")
     public ResponseEntity<List<TopSellersResponseDTO>> selectedTheThreeBestSellingProducts() {
         return new ResponseEntity<>(productService.findTheThreeBestSellingProducts(), HttpStatus.OK);
     }

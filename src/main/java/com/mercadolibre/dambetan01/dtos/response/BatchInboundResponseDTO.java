@@ -4,16 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.time.LocalDate;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InboundOrderHasBatchResponseDTO {
+public class BatchInboundResponseDTO {
 
-    private Long id;
-    private Long quantity;
-    private InbounderOrderResponseDTO inboundOrder;
-    private BatchInboundResponseDTO batch;
+    private Long batchNumber;
+    private Long productId;
+    private LocalDate dueDate;
 }

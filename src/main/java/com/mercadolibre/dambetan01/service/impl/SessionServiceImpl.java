@@ -42,9 +42,9 @@ public class SessionServiceImpl implements ISessionService {
 
         if (account != null) {
             if(account.getRol() == 1){
-                role = "ROLE_ADMIN";
-            }else {
                 role = "ROLE_USER";
+            }else {
+                role = "ROLE_ADMIN";
             }
             String token = getJWTToken(username,role);
             AccountResponseDTO user = new AccountResponseDTO();
