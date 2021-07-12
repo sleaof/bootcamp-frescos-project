@@ -4,15 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BatchResponseDTO {
-    private Long batchNumber;
-    private Long productId;
-    private String productType;
+public class TopSellersResponseDTO {
+    private String warehouseName;
+    private String productName;
     private Long quantity;
-    private Date dueDate;
 }

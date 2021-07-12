@@ -1,6 +1,7 @@
 package com.mercadolibre.dambetan01.service.crud.impl;
 
 import com.mercadolibre.dambetan01.dtos.ProductDTO;
+import com.mercadolibre.dambetan01.dtos.response.TopSellersResponseDTO;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.service.crud.IProductService;
@@ -68,6 +69,14 @@ public class ProductServiceImpl implements IProductService {
         return productRepository.findByCategory(category)
                 .stream()
                 .map(product -> modelMapper.map(product, ProductDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TopSellersResponseDTO> findTheThreeBestSellingProducts() {
+        return productRepository.findTheThreeBestSellingProducts()
+                .stream()
+                .map(product -> modelMapper.map(product, TopSellersResponseDTO.class))
                 .collect(Collectors.toList());
     }
 }

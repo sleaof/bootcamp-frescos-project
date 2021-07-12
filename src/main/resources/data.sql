@@ -156,3 +156,15 @@ INNER JOIN batch_has_purchase_orders AS BP ON B.batch_id = BP.batch_id_fk
 INNER JOIN purchase_orders AS PO ON BP.purchase_order_id_fk = PO.purchase_order_id;
 
 
+CREATE OR REPLACE VIEW view_most_selling_products AS
+SELECT w.warehouse_name, p.product_name, SUM(bp.quantity) as quantity
+FROM products as p
+INNER JOIN batch as b ON p.product_id = b.product_id_fk
+INNER JOIN batch_has_purchase_orders as bp ON  b.batch_id = bp.batch_id_fk
+INNER JOIN purchase_orders as po ON bp.purchase_order_id_fk = po.purchase_order_id
+INNER JOIN sections as s ON b.section_id_fk = s.section_id
+INNER JOIN warehouses as w ON s.warehouse_id_fk = w.warehouse_id
+GROUP BY w.warehouse_name, product_name
+ORDER BY quantity DESC LIMIT 3;
+
+

@@ -1,6 +1,7 @@
 package com.mercadolibre.dambetan01.controller;
 
 import com.mercadolibre.dambetan01.dtos.ProductDTO;
+import com.mercadolibre.dambetan01.dtos.response.TopSellersResponseDTO;
 import com.mercadolibre.dambetan01.service.crud.IProductService;
 import com.mercadolibre.dambetan01.service.crud.impl.ProductServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.List;
 @RestController
 public class ProductController {
 
-    private final IProductService productService;
+    private final ProductServiceImpl productService;
 
     public ProductController(ProductServiceImpl productService) {
         this.productService = productService;
@@ -34,5 +35,10 @@ public class ProductController {
         if (productService.findByCategory(category).isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(productService.findByCategory(category), HttpStatus.OK);
+    }
+
+    @GetMapping("/top-sellers")
+    public ResponseEntity<List<TopSellersResponseDTO>> selectedTheThreeBestSellingProducts() {
+        return new ResponseEntity<>(productService.findTheThreeBestSellingProducts(), HttpStatus.OK);
     }
 }

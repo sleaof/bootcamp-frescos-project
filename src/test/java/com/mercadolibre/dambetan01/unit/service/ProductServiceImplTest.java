@@ -1,10 +1,13 @@
 package com.mercadolibre.dambetan01.unit.service;
 
 import com.mercadolibre.dambetan01.dtos.ProductDTO;
+import com.mercadolibre.dambetan01.dtos.response.TopSellersResponseDTO;
 import com.mercadolibre.dambetan01.enums.ProductCategory;
 import com.mercadolibre.dambetan01.model.Product;
 import com.mercadolibre.dambetan01.repository.ProductRepository;
 import com.mercadolibre.dambetan01.service.crud.impl.ProductServiceImpl;
+import org.json.JSONException;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
@@ -28,9 +31,10 @@ class ProductServiceImplTest {
     ProductDTO productDTO;
     List<Product> listOfProducts  = new ArrayList<>();
     List<Product> listOfProductsByCategory  = new ArrayList<>();
+    List<JSONObject> listOfTopSellersProducts = new ArrayList<>();
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws JSONException {
         this.service = new ProductServiceImpl(repository, new ModelMapper());
 
         product = new Product(1L, "Carne", 0.0, LocalDate.of(2021, 5, 21), 20F, ProductCategory.FROZEN, null);
@@ -40,6 +44,14 @@ class ProductServiceImplTest {
         listOfProducts.add(new Product(3L, "Maca", 0.0, LocalDate.of(2021, 5, 21), 60F, ProductCategory.REFRIGERATED, null));
 
         listOfProductsByCategory.add(product);
+
+        JSONObject object = new JSONObject();
+
+        object.put("warehouseName", "Extrema");
+        object.put("productName", "Massa-Congelada");
+        object.put("quantity", 6);
+
+        listOfTopSellersProducts.add(object);
     }
 
     @Test
@@ -94,5 +106,12 @@ class ProductServiceImplTest {
         when(repository.findByCategory("FROZEN")).thenReturn(listOfProductsByCategory);
         List<ProductDTO> listOfProductsDTO = service.findAll();
         assertEquals("Carne", listOfProductsByCategory.get(0).getProductName());
+    }
+
+    @Test
+    void product_findTheThreeBestSellingProducts_returnList() {
+        when(repository.findTheThreeBestSellingProducts()).thenReturn(listOfTopSellersProducts);
+        List<TopSellersResponseDTO> listOfTopSellersDTO = service.findTheThreeBestSellingProducts();
+        assertEquals("Extrema", listOfTopSellersDTO.get(0).getWarehouseName());
     }
 }
