@@ -1,0 +1,645 @@
+{
+	"info": {
+		"_postman_id": "63d9f0a8-f572-4188-aea5-d492decdd2a9",
+		"name": "Bootcamp Frescos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "selectedAllProductsByCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MDk4MTYzLCJleHAiOjE2MjYwOTg3NjN9.Dqex5j0c16xHCeV8Y_Bk2HrsLvaKMG5Lg873DrGMATlE-_0Mh2DfZqqKwyBfel_gbw8GE-knlL2d9jYTZLHy_A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/list?category=fresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"list"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "fresh"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/sign-in?username=user_one&password=contra123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"sign-in"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user_one"
+						},
+						{
+							"key": "password",
+							"value": "contra123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectedAllProducts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MDk3OTY2LCJleHAiOjE2MjYwOTg1NjZ9._1bJqxJWPQeKQmyz1KudmRdfL2UEMjMp6dIdQZB-KfLfiNZqnbjHh-mDc449hmdty6glZ399G8MfP7l2FF1Lfw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createInboundOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MDk4MTYzLCJleHAiOjE2MjYwOTg3NjN9.Dqex5j0c16xHCeV8Y_Bk2HrsLvaKMG5Lg873DrGMATlE-_0Mh2DfZqqKwyBfel_gbw8GE-knlL2d9jYTZLHy_A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderDate\": \"2021-07-02\",\n    \"section\":{\n        \"sectionCode\" : 1,\n        \"warehouseCode\" : 1\n    },\n    \"batchStock\" : [\n        {\n            \"productId\": 2,\n            \"currentTemperature\": 12.0,\n            \"minTemperature\" : 7.0,\n            \"initialQuantity\": 100,\n            \"currentQuantity\": 50,\n            \"manufacturingDate\": \"2021-07-02\",\n            \"manufacturingTime\": \"2021-07-02\",\n            \"dueDate\": \"2021-07-02\"\n        },\n        {\n            \"productId\": 3,\n            \"currentTemperature\": 5.0,\n            \"minTemperature\" : 5.0,\n            \"initialQuantity\": 30,\n            \"currentQuantity\": 35,\n            \"manufacturingDate\": \"2021-07-02\",\n            \"manufacturingTime\": \"2021-07-02\",\n            \"dueDate\": \"2021-07-02\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/api/v1/fresh-products/inbounded/",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"inbounded",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateInboundOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MDk4MTYzLCJleHAiOjE2MjYwOTg3NjN9.Dqex5j0c16xHCeV8Y_Bk2HrsLvaKMG5Lg873DrGMATlE-_0Mh2DfZqqKwyBfel_gbw8GE-knlL2d9jYTZLHy_A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderDate\": \"2021-07-02\",\n    \"section\":{\n        \"sectionCode\" : 1,\n        \"warehouseCode\" : 1\n    },\n    \"batchStock\" : [\n        {\n            \"batchNumber\" : 9,\n            \"productId\": 2,\n            \"currentTemperature\": 1,\n            \"minTemperature\" : 7.0,\n            \"initialQuantity\": 50,\n            \"currentQuantity\": 50,\n            \"manufacturingDate\": \"2021-07-02\",\n            \"manufacturingTime\": \"2021-07-02\",\n            \"dueDate\": \"2021-07-02\"\n        },\n        {\n            \"batchNumber\" : 2,\n            \"productId\": 3,\n            \"currentTemperature\": 6.0,\n            \"minTemperature\" : 4.0,\n            \"initialQuantity\": 30,\n            \"currentQuantity\": 32,\n            \"manufacturingDate\": \"2021-07-02\",\n            \"manufacturingTime\": \"2021-07-02\",\n            \"dueDate\": \"2021-07-03\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/api/v1/fresh-products/inbounded/",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"inbounded",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectedTheThreeBestSellingProducts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MDk4MTYzLCJleHAiOjE2MjYwOTg3NjN9.Dqex5j0c16xHCeV8Y_Bk2HrsLvaKMG5Lg873DrGMATlE-_0Mh2DfZqqKwyBfel_gbw8GE-knlL2d9jYTZLHy_A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/top-sellers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"top-sellers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllBatchesOffAWarehouseByDueDate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAwNzkwLCJleHAiOjE2MjYxMDEzOTB9.9HcJk0GX-Exv4DWnee6jTRiZl_EnssBGJt2CMhDo1GacxTuOyHLCP83uis6_SwWNOPkvPsp5XqyX1I6m-_hCeA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/due-date/?days=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"due-date",
+						""
+					],
+					"query": [
+						{
+							"key": "days",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllBatchesSortedByDueDateAndCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAwNzkwLCJleHAiOjE2MjYxMDEzOTB9.9HcJk0GX-Exv4DWnee6jTRiZl_EnssBGJt2CMhDo1GacxTuOyHLCP83uis6_SwWNOPkvPsp5XqyX1I6m-_hCeA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/due-date/list/?days=10&category=frozen",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"due-date",
+						"list",
+						""
+					],
+					"query": [
+						{
+							"key": "days",
+							"value": "10"
+						},
+						{
+							"key": "category",
+							"value": "frozen"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkProductsLocationInWarehouseCurrentQuantity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAxNTk4LCJleHAiOjE2MjYxMDIxOTh9.vTt_h7q8YByoDp_Vk5fgyqS_BzQjYkPESYuktsrFrDO4jW8TjTJTFHA7C0Jyp4tlp7bRZ5nZxzypt67cqUnt9g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/list/warehouse?productId=1&orderType=c&warehouseId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"list",
+						"warehouse"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1"
+						},
+						{
+							"key": "orderType",
+							"value": "c"
+						},
+						{
+							"key": "warehouseId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkProductsLocationInWarehouseDueDate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAyMzgwLCJleHAiOjE2MjYxMDI5ODB9.isv8lDcOadtypj4nPfZqJ-GF8Vy7nk7Evz0sXGs2PqCi4-bJc8hZ1xN51BkT6UuDfpKhabrsO08lBH4FbexTbQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/list/warehouse?productId=1&orderType=f&warehouseId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"list",
+						"warehouse"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1"
+						},
+						{
+							"key": "orderType",
+							"value": "f"
+						},
+						{
+							"key": "warehouseId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productIdFromWarehouses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAyMzgwLCJleHAiOjE2MjYxMDI5ODB9.isv8lDcOadtypj4nPfZqJ-GF8Vy7nk7Evz0sXGs2PqCi4-bJc8hZ1xN51BkT6UuDfpKhabrsO08lBH4FbexTbQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/warehouse/?productId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"warehouse",
+						""
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectedProductsFromOrderId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAzMTQ0LCJleHAiOjE2MjYxMDM3NDR9.LvVJaFXyGfyXeFSpP0PsJi3QM__bJqpYH-qCHPz48yl0g7W7WPENdclxGKHHA5T9YYwIE-0psIAN1BEzj8yEtQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/orders/?orderId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"orders",
+						""
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAzMTQ0LCJleHAiOjE2MjYxMDM3NDR9.LvVJaFXyGfyXeFSpP0PsJi3QM__bJqpYH-qCHPz48yl0g7W7WPENdclxGKHHA5T9YYwIE-0psIAN1BEzj8yEtQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2021-05-26\",\n    \"buyer\": 2,\n    \"orderStatus\": \"PROCESSING\",\n    \"products\": \n        [\n            {\n                \"productId\": 10,\n                \"quantity\": 15\n            },\n            {\n                \"productId\": 11,\n                \"quantity\": 18\n            }\n        ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProductsById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAzODU5LCJleHAiOjE2MjYxMDQ0NTl9.f9N6UxY3hqEsT34yfNNZkEkobqp_8ktnkUUmu3wuC-3NBsNgOY55MXmFRpCddC1tCB7lhhqdMrYjonIebPVQXA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2021-05-26\",\n    \"buyer\": 2,\n    \"orderStatus\": \"PROCESSING\",\n    \"products\": \n        [\n            {\n                \"productId\": 10,\n                \"quantity\": 10\n            },\n            {\n                \"productId\": 11,\n                \"quantity\": 5\n            }\n        ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/v1/fresh-products/orders?orderId=12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"fresh-products",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StephanieRF-006",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiQlVZRVIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTE2NzI1LCJleHAiOjE2MjYxMTczMjV9.VJ-YdK2ZC8agCYlWp1tXwHSNaRomrxeExvS2NPlB5vcGagaif8gRL_onL9TfE8uL8ptjUuOBfmGtj96YdcbPlg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/top-selling-products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"top-selling-products"
+					]
+				},
+				"description": "Requisito 006\nBootCamper Stephanie Leao\nGera o Top 03 dos produtos mais vendidos por WareHouse"
+			},
+			"response": []
+		},
+		{
+			"name": "Gabriel Borba RF-006",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiU1VQRVJWSVNPUl8xIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJpYXQiOjE2MjYxMTc0MTcsImV4cCI6MTYyNjExODAxN30.BnWbKxHNAVMAry19mUVRqUZ5rWnk_vZMNN2cAXKwj8TzW9t4nf3bC9gCrHZD2leeBcQpAAcUN1srozXxqqam9g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/inboud-order/betweendate?firstDate=2021-05-21&secondDate=2021-06-21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"inboud-order",
+						"betweendate"
+					],
+					"query": [
+						{
+							"key": "firstDate",
+							"value": "2021-05-21"
+						},
+						{
+							"key": "secondDate",
+							"value": "2021-06-21"
+						}
+					]
+				},
+				"description": "RF-006\nGabriel Borba\n\nLista todas as ordens de entrada de lote, em um determinado periodo."
+			},
+			"response": []
+		}
+	]
+}
