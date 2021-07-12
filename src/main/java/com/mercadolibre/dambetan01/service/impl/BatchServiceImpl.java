@@ -11,15 +11,10 @@ import com.mercadolibre.dambetan01.service.*;
 import lombok.AllArgsConstructor;
 
 import org.json.simple.JSONObject;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -38,7 +33,7 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) {
+    public BatchStockResponseDTO createBatchStock(InboundOrderDTO inboundOrderDTO) throws Throwable {
         BatchStockResponseDTO batchStockResponseDTO = new BatchStockResponseDTO();
         List<BatchDTO> batchStock = new ArrayList<>();
         Section section = buildSectionToBatchStock(inboundOrderDTO);
@@ -73,10 +68,16 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public List<JSONObject> checkProductsLocationInWarehouse(Long productId, Long warehouseId){
-
-            List<JSONObject> query = batchRepository.checkProductsLocationInWarehouse(productId, warehouseId);
-            return query;
+    public List<JSONObject> checkProductsLocationInWarehouse(Long productId, String orderType, Long warehouseId){
+        productService.findById(productId);
+        warehouseService.findById(warehouseId);
+        if (orderType.equalsIgnoreCase("C"))
+            return batchRepository.checkProductsLocationInWarehouseCurrentQuantity( productId, warehouseId);
+        if (orderType.equalsIgnoreCase("F"))
+            return batchRepository.checkProductsLocationInWarehouseDueDate(productId, warehouseId);
+        else {
+            throw new NotFoundException("Filtro de ordenação inválido " + orderType);
+        }
     }
 
     public Section buildSectionToBatchStock(InboundOrderDTO inboundOrderDTO) {
@@ -85,5 +86,4 @@ public class BatchServiceImpl implements BatchService {
         section.setWarehouse(warehouse);
         return section;
     }
-
 }

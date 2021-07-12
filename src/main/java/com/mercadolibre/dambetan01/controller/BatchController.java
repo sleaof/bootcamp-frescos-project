@@ -5,13 +5,11 @@ import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
 import com.mercadolibre.dambetan01.service.impl.BatchServiceImpl;
 import lombok.AllArgsConstructor;
 import org.json.simple.JSONObject;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.awt.print.Pageable;
 import java.util.List;
 
 @AllArgsConstructor
@@ -22,7 +20,7 @@ public class BatchController {
     private BatchServiceImpl batchService;
 
     @PostMapping("/fresh-products/inbounded/")
-    public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody  InboundOrderDTO inboundOrderDTO){
+    public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody  InboundOrderDTO inboundOrderDTO) throws Throwable {
         return new ResponseEntity<>(batchService.createBatchStock(inboundOrderDTO), HttpStatus.CREATED);
     }
 
@@ -33,10 +31,7 @@ public class BatchController {
 
     @GetMapping("/fresh-products/list")
     public List<JSONObject> checkProductsLocationInWarehouse(@RequestParam("productId") Long productId, @RequestParam("orderType") String orderType, @RequestParam("warehouseId") Long warehouseId) {
-
-        System.out.println(orderType);
-        //Pageable pageable = new PageRequest(0,1000,Sor)
-        return batchService.checkProductsLocationInWarehouse(productId, warehouseId);
+        return batchService.checkProductsLocationInWarehouse(productId, orderType, warehouseId);
     }
 
 }
