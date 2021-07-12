@@ -72,7 +72,6 @@ public class BatchServiceImpl implements IBatchService {
 
     @Override
     public List<BatchResponseDTO> getAllBatchesOffAWarehouseByDueDate(Integer days) {
-        System.out.println(batchRepository.findAllBatchesOffAWarehouseByDueDate(days));
         return batchRepository.findAllBatchesOffAWarehouseByDueDate(days)
                 .stream()
                 .map(batch -> modelMapper.map(batch, BatchResponseDTO.class))

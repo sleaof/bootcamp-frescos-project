@@ -24,7 +24,7 @@ class ProductServiceImplTest {
     ProductServiceImpl service;
 
     Product product;
-    Product p = null;
+    Product productNull = null;
     ProductDTO productDTO;
     List<Product> listOfProducts  = new ArrayList<>();
     List<Product> listOfProductsByCategory  = new ArrayList<>();
@@ -56,7 +56,7 @@ class ProductServiceImplTest {
 
     @Test
     void product_delete_returnException() {
-        when(repository.findById(100L)).thenReturn(Optional.ofNullable(p));
+        when(repository.findById(100L)).thenReturn(Optional.ofNullable(productNull));
         assertThrows(NoSuchElementException.class, () -> service.delete(100L),
                 "Não foi encontrado nenhum produto com este Id: 100");
     }
@@ -70,7 +70,7 @@ class ProductServiceImplTest {
 
     @Test
     void product_findById_returnException() {
-        when(repository.findById(100L)).thenReturn(Optional.ofNullable(p));
+        when(repository.findById(100L)).thenReturn(Optional.ofNullable(productNull));
         assertThrows(NoSuchElementException.class, () -> service.findById(100L),
                 "Não foi encontrado nenhum produto com este Id: 100");
     }
