@@ -3,8 +3,11 @@ package com.mercadolibre.dambetan01.controller;
 import com.mercadolibre.dambetan01.dtos.InboundOrderDTO;
 import com.mercadolibre.dambetan01.dtos.response.BatchResponseDTO;
 import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
+
 import com.mercadolibre.dambetan01.service.crud.IBatchService;
 import com.mercadolibre.dambetan01.service.impl.BatServiceImpl;
+import org.json.simple.JSONObject;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +28,8 @@ public class BatchController {
     }
 
     @PostMapping("/fresh-products/inbounded/")
-    public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody InboundOrderDTO inboundOrderDTO) {
+
+    public ResponseEntity<BatchStockResponseDTO> createInboundOrder(@Valid @RequestBody InboundOrderDTO inboundOrderDTO) throws Throwable {
         return new ResponseEntity<>(batchService.createBatchStock(inboundOrderDTO), HttpStatus.CREATED);
     }
 
@@ -42,5 +46,10 @@ public class BatchController {
     @GetMapping("/fresh-products/due-date/list/")
     public ResponseEntity<List<BatchResponseDTO>> getAllBatchesSortedByDueDateAndCategory(@RequestParam("days") Integer days, @RequestParam("category") String category){
         return new ResponseEntity<>(iBatchService.getAllBatchesSortedByDueDateAndCategory(days, category), HttpStatus.OK);
+    }
+
+    @GetMapping("/fresh-products/list/warehouse")
+    public List<JSONObject> checkProductsLocationInWarehouse(@RequestParam("productId") Long productId, @RequestParam("orderType") String orderType, @RequestParam("warehouseId") Long warehouseId) {
+        return batchService.checkProductsLocationInWarehouse(productId, orderType, warehouseId);
     }
 }

@@ -14,8 +14,7 @@ public class ProdServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public Product findById(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product " + id));
+    public Product findById(Long id) throws NumberFormatException{
+            return productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product " + id));
     }
-
 }

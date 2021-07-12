@@ -23,7 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/fake").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/v1/fresh-products/inbounded/").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/fresh-products/inbounded/").permitAll()
-                .anyRequest().authenticated().and()
-                .addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().authenticated();
+        //.and()
+          //      .addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
+
     }
 }

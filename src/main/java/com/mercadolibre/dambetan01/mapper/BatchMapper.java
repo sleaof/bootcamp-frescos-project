@@ -4,6 +4,8 @@ import com.mercadolibre.dambetan01.dtos.BatchDTO;
 import com.mercadolibre.dambetan01.model.Batch;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 public class BatchMapper {
 
