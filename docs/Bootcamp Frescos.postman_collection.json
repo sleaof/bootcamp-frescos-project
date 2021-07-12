@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c6981daa-6c0e-49c2-9e75-a80bdc1bff0c",
+		"_postman_id": "63d9f0a8-f572-4188-aea5-d492decdd2a9",
 		"name": "Bootcamp Frescos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -563,6 +563,81 @@
 						}
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "StephanieRF-006",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiQlVZRVIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTE2NzI1LCJleHAiOjE2MjYxMTczMjV9.VJ-YdK2ZC8agCYlWp1tXwHSNaRomrxeExvS2NPlB5vcGagaif8gRL_onL9TfE8uL8ptjUuOBfmGtj96YdcbPlg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/top-selling-products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"top-selling-products"
+					]
+				},
+				"description": "Requisito 006\nBootCamper Stephanie Leao\nGera o Top 03 dos produtos mais vendidos por WareHouse"
+			},
+			"response": []
+		},
+		{
+			"name": "Gabriel Borba RF-006",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiU1VQRVJWSVNPUl8xIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJpYXQiOjE2MjYxMTc0MTcsImV4cCI6MTYyNjExODAxN30.BnWbKxHNAVMAry19mUVRqUZ5rWnk_vZMNN2cAXKwj8TzW9t4nf3bC9gCrHZD2leeBcQpAAcUN1srozXxqqam9g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/v1/inboud-order/betweendate?firstDate=2021-05-21&secondDate=2021-06-21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"inboud-order",
+						"betweendate"
+					],
+					"query": [
+						{
+							"key": "firstDate",
+							"value": "2021-05-21"
+						},
+						{
+							"key": "secondDate",
+							"value": "2021-06-21"
+						}
+					]
+				},
+				"description": "RF-006\nGabriel Borba\n\nLista todas as ordens de entrada de lote, em um determinado periodo."
 			},
 			"response": []
 		}
