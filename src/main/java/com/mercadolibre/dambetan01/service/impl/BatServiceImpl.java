@@ -86,5 +86,4 @@ public class BatServiceImpl implements BatchService {
         section.setWarehouse(warehouse);
         return section;
     }
-
 }
