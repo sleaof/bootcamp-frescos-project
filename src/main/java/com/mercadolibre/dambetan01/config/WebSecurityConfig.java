@@ -18,8 +18,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/sign-in").permitAll()
-                //.antMatchers(HttpMethod.GET, "/ping").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/ping").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/api/v1/inboudOrderHasBatchOnDate").permitAll()
+                .antMatchers(HttpMethod.GET, "/ping").hasRole("ADMIN")
                 //.antMatchers(HttpMethod.GET, "/v3/api-docs").permitAll()
+                .antMatchers(HttpMethod.GET, "/v3/api-docs").hasRole("USER")
+
                 .antMatchers(HttpMethod.GET, "/fake").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/v1/fresh-products/inbounded/").permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/fresh-products/inbounded/").permitAll()

@@ -1,9 +1,7 @@
 package com.mercadolibre.dambetan01.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class InboundOrderHasBatch {
 
     @Id
@@ -20,10 +19,13 @@ public class InboundOrderHasBatch {
     private Long inboundOrderHasBatchId;
     private Long quantity;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inbound_order_id_fk", nullable = false)
     private InboundOrder inboundOrder;
 
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "batch_id_fk", nullable = false)
     private Batch batchs;

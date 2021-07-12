@@ -6,8 +6,8 @@ INSERT INTO country_houses (id, country, name) VALUES ('4', 'Colombia', 'Casa ce
 
 INSERT INTO accounts (id, password, rol, username, id_country_house_fk) VALUES ('1', 'contra123', '1', 'user_one', '1');
 INSERT INTO accounts (id, password, rol, username, id_country_house_fk) VALUES ('2', 'contra123', '1', 'user_two', '2');
-INSERT INTO accounts (id, password, rol, username, id_country_house_fk) VALUES ('3', 'contra123', '1', 'user_three', '3');
-INSERT INTO accounts (id, password, rol, username, id_country_house_fk) VALUES ('4', 'contra123', '1', 'user_four', '4');
+INSERT INTO accounts (id, password, rol, username, id_country_house_fk) VALUES ('3', 'contra123', '3', 'user_three', '3');
+INSERT INTO accounts (id, password, rol, username, id_country_house_fk) VALUES ('4', 'contra123', '4', 'user_four', '4');
 
 
 --Insert produtos de uma determinada categoria

@@ -38,13 +38,20 @@ public class SessionServiceImpl implements ISessionService {
     public AccountResponseDTO login(String username, String password) throws ApiException {
         //Voy a la base de datos y reviso que el usuario y contraseña existan.
         Account account = accountRepository.findByUsernameAndPassword(username, password);
+        String role;
 
         if (account != null) {
-            String token = getJWTToken(username);
+            if(account.getRol() == 1){
+                role = "ROLE_ADMIN";
+            }else {
+                role = "ROLE_USER";
+            }
+            String token = getJWTToken(username,role);
             AccountResponseDTO user = new AccountResponseDTO();
             user.setUsername(username);
             user.setToken(token);
             return user;
+
         } else {
             throw new ApiException("404", "Usuario y/o contraseña incorrecto", 404);
         }
@@ -56,10 +63,10 @@ public class SessionServiceImpl implements ISessionService {
      * @param username
      * @return
      */
-    private String getJWTToken(String username) {
+    private String getJWTToken(String username, String roles) {
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList("ROLE_USER");
+                .commaSeparatedStringToAuthorityList(roles);
         String token = Jwts
                 .builder()
                 .setId("softtekJWT")

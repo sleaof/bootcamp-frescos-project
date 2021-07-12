@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class InboundOrder {
 
     @Id
@@ -26,5 +27,6 @@ public class InboundOrder {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "inbound_order_id", referencedColumnName = "seller_id")
     private Seller seller;
+
 
 }

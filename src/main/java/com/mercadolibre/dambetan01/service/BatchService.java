@@ -5,6 +5,7 @@ import com.mercadolibre.dambetan01.dtos.response.BatchStockResponseDTO;
 import com.mercadolibre.dambetan01.model.Batch;
 import org.json.simple.JSONObject;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 public interface BatchService {
@@ -15,6 +16,6 @@ public interface BatchService {
 
     BatchStockResponseDTO updateBatchStock(InboundOrderDTO inboundOrderDTO, Long orderNumber);
 
-    List<JSONObject> checkProductsLocationInWarehouse(Long productId, String filter, Long warehouseId);
+    List<JSONObject> checkProductsLocationInWarehouse(Long productId, Long warehouseId);
 
 }

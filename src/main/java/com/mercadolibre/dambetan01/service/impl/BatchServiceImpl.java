@@ -11,10 +11,15 @@ import com.mercadolibre.dambetan01.service.*;
 import lombok.AllArgsConstructor;
 
 import org.json.simple.JSONObject;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -68,7 +73,7 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public List<JSONObject> checkProductsLocationInWarehouse(Long productId, String orderType, Long warehouseId){
+    public List<JSONObject> checkProductsLocationInWarehouse(Long productId, Long warehouseId){
 
             List<JSONObject> query = batchRepository.checkProductsLocationInWarehouse(productId, warehouseId);
             return query;

@@ -27,7 +27,7 @@ public class SessionController {
      * @throws NotFoundException
      */
     @PostMapping("/sign-in")
-    public AccountResponseDTO login(@RequestParam("username") String username, @RequestParam("password") String password) throws NotFoundException {
+    public AccountResponseDTO login(@RequestParam  ("username") String username, @RequestParam("password") String password) throws NotFoundException {
         return service.login(username, password);
     }
 
