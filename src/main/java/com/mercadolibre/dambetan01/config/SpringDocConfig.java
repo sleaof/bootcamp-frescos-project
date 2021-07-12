@@ -26,4 +26,5 @@ public class SpringDocConfig {
 				.description(format("Scope %s", SCOPE_VALUE)));
 		return api;
 	}
+
 }

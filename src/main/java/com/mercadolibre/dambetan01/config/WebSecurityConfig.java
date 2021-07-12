@@ -42,8 +42,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //RF-006 Gabriel Borba Paim
                 .antMatchers(HttpMethod.GET,"/inboud-order/betweendate").hasRole("ADMIN")
                 .anyRequest().authenticated();
-        //.and()
-        //      .addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
-
     }
 }
