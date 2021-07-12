@@ -4,6 +4,7 @@ import com.mercadolibre.dambetan01.dtos.*;
 import com.mercadolibre.dambetan01.dtos.response.ProductResponseDTO;
 import com.mercadolibre.dambetan01.dtos.response.TotalPriceResponseDTO;
 
+import com.mercadolibre.dambetan01.enums.OrderStatus;
 import com.mercadolibre.dambetan01.exceptions.NotFoundException;
 import com.mercadolibre.dambetan01.model.*;
 
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,6 +60,29 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
         isValid(purchaseOrderDTO);
         purchaseOrderRepository.save(purchaseOrder);
         addProducts(purchaseOrderDTO, purchaseOrder);
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println(purchaseOrderDTO.getOrderStatus());
+                switch (purchaseOrderDTO.getOrderStatus()) {
+                    case PROCESSING:
+                        purchaseOrderDTO.setOrderStatus(OrderStatus.PREPARING);
+                        break;
+                    case PREPARING:
+                        purchaseOrderDTO.setOrderStatus(OrderStatus.DELIVERING);
+                        break;
+                    case DELIVERING:
+                        timer.cancel();
+                        timer.purge();
+                        break;
+                }
+
+                purchaseOrderDTO.setPurchaseOrderId(purchaseOrder.getPurchaseOrderId());
+                update(purchaseOrderDTO);
+            }
+        }, 5000, 5000);
 
         return purchaseOrderDTO;
     }
@@ -174,4 +200,22 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
             }
         }
     }
+
+    // And From your main() method or any other method
+//    TimerTask x = new TimerTask() {
+//        private int count = 0;
+//        @Override
+//        public void run() {
+//            count++;
+//            System.out.println("teste update");
+//            if(count > 3) {
+//                timer.cancel();
+//            }
+//        }
+//    };
+
+//    public void teste() {
+//        Timer timer = new Timer();
+//        timer.schedule(x, 0, 5000);
+//    }
 }
