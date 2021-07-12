@@ -18,7 +18,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "gabriel_borba_paim/api/v1")
 public class InboudOrderHasBatchController {
 
     private InboundOrderHasBatchService inboundOrderHasBatchService;

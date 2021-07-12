@@ -39,10 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/fresh-products/due-date/").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/fresh-products/due-date/list/").hasRole("ADMIN")
                 //RF-006 Gabriel Borba Paim
-                .antMatchers(HttpMethod.GET,"/inboud-order/betweendate").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"gabriel_borba_paim/inboud-order/betweendate").hasRole("ADMIN")
                 .anyRequest().authenticated();
-        //.and()
-        //      .addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
-
     }
 }
