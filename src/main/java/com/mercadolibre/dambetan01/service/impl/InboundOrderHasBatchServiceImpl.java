@@ -18,10 +18,8 @@ import java.util.stream.Collectors;
 @Service
 public class InboundOrderHasBatchServiceImpl implements InboundOrderHasBatchService {
 
-
     private final InboundOrderHasBatchRepository orderHasBatchRepository;
     private final ModelMapper modelMapper;
-
 
     @Override
     public void createInboundOrderHasBatch(InboundOrder inboundOrder, Batch batch){
@@ -33,17 +31,10 @@ public class InboundOrderHasBatchServiceImpl implements InboundOrderHasBatchServ
     }
 
     @Override
-    public List<InboundOrderHasBatch> findInboudOrderHasBatchOnDate(LocalDate firstDate, LocalDate secondDate) {
-        return orderHasBatchRepository.findInboundOrderDate(firstDate,secondDate);
-    }
-
-    @Override
     public List<InboundOrderHasBatchResponseDTO> findInboundOrderBetweenDate(LocalDate firstDate, LocalDate secondDate) {
         return orderHasBatchRepository.findInboundOrderDate(firstDate,secondDate)
                 .stream()
                 .map(inboundOrderHasBatch -> modelMapper.map(inboundOrderHasBatch, InboundOrderHasBatchResponseDTO.class))
                 .collect(Collectors.toList());
     }
-
-
 }

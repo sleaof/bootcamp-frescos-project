@@ -13,8 +13,7 @@ public interface InboundOrderHasBatchService {
 
     void createInboundOrderHasBatch(InboundOrder inboundOrder, Batch batch);
 
-    List<InboundOrderHasBatch> findInboudOrderHasBatchOnDate(LocalDate firstDate, LocalDate secondDate);
-
+    //List<InboundOrderHasBatch> findInboudOrderHasBatchOnDate(LocalDate firstDate, LocalDate secondDate);
 
     List<InboundOrderHasBatchResponseDTO> findInboundOrderBetweenDate(LocalDate firstDate, LocalDate secondDate);
 }

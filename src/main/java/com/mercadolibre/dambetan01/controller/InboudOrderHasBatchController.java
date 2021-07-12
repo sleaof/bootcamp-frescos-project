@@ -23,13 +23,6 @@ public class InboudOrderHasBatchController {
 
     private InboundOrderHasBatchService inboundOrderHasBatchService;
 
-    @GetMapping("/inboudOrderHasBatchOnDate")
-    public ResponseEntity<List<InboundOrderHasBatch>> findInboundOrdersOnDate(@RequestParam("firstDate") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate firstDate
-            ,@RequestParam("secondDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate secondDate){
-        List<InboundOrderHasBatch> inbound = inboundOrderHasBatchService.findInboudOrderHasBatchOnDate(firstDate,secondDate);
-        return new ResponseEntity<>(inbound, HttpStatus.OK);
-    }
-
     @GetMapping("/inboudOrderHasBatchOnDateDTO")
     public ResponseEntity<List<InboundOrderHasBatchResponseDTO>> findInboundBetween(@RequestParam("firstDate") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate firstDate
             , @RequestParam("secondDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate secondDate){
