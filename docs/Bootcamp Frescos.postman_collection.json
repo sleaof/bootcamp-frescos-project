@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "63d9f0a8-f572-4188-aea5-d492decdd2a9",
+		"_postman_id": "e187be34-ffbd-49d2-950a-59038f41edc2",
 		"name": "Bootcamp Frescos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -567,7 +567,7 @@
 			"response": []
 		},
 		{
-			"name": "StephanieRF-006",
+			"name": "Stephanie RF-006",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -582,7 +582,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/v1/top-selling-products",
+					"raw": "http://localhost:8082/api/v1/stephanie-silva/top-selling-products",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -591,6 +591,7 @@
 					"path": [
 						"api",
 						"v1",
+						"stephanie-silva",
 						"top-selling-products"
 					]
 				},
