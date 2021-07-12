@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MDk4MTYzLCJleHAiOjE2MjYwOTg3NjN9.Dqex5j0c16xHCeV8Y_Bk2HrsLvaKMG5Lg873DrGMATlE-_0Mh2DfZqqKwyBfel_gbw8GE-knlL2d9jYTZLHy_A",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiQlVZRVIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTI4NzU4LCJleHAiOjE2MjYxMjkzNTh9.CgtZg86p88aF3X7NZc82fdHh1bPKKa261jlwoOW9MCysSrqv-QJ98ireEJPUFUnGfmXHgO4hNESoBRh7_FIKfw",
 									"type": "string"
 								}
 							]
@@ -311,7 +311,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAyMzgwLCJleHAiOjE2MjYxMDI5ODB9.isv8lDcOadtypj4nPfZqJ-GF8Vy7nk7Evz0sXGs2PqCi4-bJc8hZ1xN51BkT6UuDfpKhabrsO08lBH4FbexTbQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiQlVZRVIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTI4NzU4LCJleHAiOjE2MjYxMjkzNTh9.CgtZg86p88aF3X7NZc82fdHh1bPKKa261jlwoOW9MCysSrqv-QJ98ireEJPUFUnGfmXHgO4hNESoBRh7_FIKfw",
 									"type": "string"
 								}
 							]
@@ -363,7 +363,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoidXNlcl9vbmUiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTAyMzgwLCJleHAiOjE2MjYxMDI5ODB9.isv8lDcOadtypj4nPfZqJ-GF8Vy7nk7Evz0sXGs2PqCi4-bJc8hZ1xN51BkT6UuDfpKhabrsO08lBH4FbexTbQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiQlVZRVIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjI2MTI4NzU4LCJleHAiOjE2MjYxMjkzNTh9.CgtZg86p88aF3X7NZc82fdHh1bPKKa261jlwoOW9MCysSrqv-QJ98ireEJPUFUnGfmXHgO4hNESoBRh7_FIKfw",
 									"type": "string"
 								}
 							]
@@ -503,7 +503,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8082/api/v1/fresh-products/list/price?orderType=D",
+							"raw": "http://localhost:8082/api/v1/fresh-products/list/price?orderType=A",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -519,7 +519,7 @@
 							"query": [
 								{
 									"key": "orderType",
-									"value": "D"
+									"value": "A"
 								}
 							]
 						}
