@@ -148,6 +148,9 @@ Deve ser gerado o Token
     firsDate = 2021-05-21
     secondDate = 2021-06-21
 
+### Documentacão do requisito 06
+  - https://drive.google.com/file/d/1d6_KkBbzuhoSJL6ycXYYqbpRZbOvi1z0/view?usp=sharing
+
 
 ### SCOPE
 
